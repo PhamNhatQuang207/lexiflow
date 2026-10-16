@@ -172,7 +172,7 @@ export const DeckExplorer: React.FC<DeckExplorerProps> = ({
           )}
         </div>
 
-        <div className="grid grid-cols-2 sm:grid-cols-5 gap-3">
+        <div className="flex sm:grid sm:grid-cols-5 overflow-x-auto no-scrollbar gap-2.5 sm:gap-3 pb-1 -mx-1 px-1">
           {CEFR_LEVELS.map((lvl) => {
             const count = words.filter((w) => w.cefr === lvl.level).length;
             const isSelected = activeLevelFilter === lvl.level;
@@ -182,7 +182,7 @@ export const DeckExplorer: React.FC<DeckExplorerProps> = ({
                 onClick={() =>
                   setActiveLevelFilter(isSelected ? 'all' : lvl.level)
                 }
-                className={`paper-card rounded-2xl p-4 transition-all cursor-pointer flex flex-col justify-between gap-3 ${
+                className={`min-w-[148px] sm:min-w-0 shrink-0 paper-card rounded-2xl p-3.5 sm:p-4 transition-all cursor-pointer flex flex-col justify-between gap-3 ${
                   isSelected
                     ? 'ring-2 ring-teal-500 bg-teal-50/30 dark:bg-teal-950/20'
                     : 'hover:border-slate-300 dark:hover:border-slate-700'
@@ -356,14 +356,14 @@ export const DeckExplorer: React.FC<DeckExplorerProps> = ({
             />
           </div>
 
-          <div className="flex flex-wrap items-center gap-2">
+          <div className="grid grid-cols-2 sm:flex sm:flex-wrap items-center gap-2">
             <select
               value={activeLevelFilter}
               onChange={(e) =>
                 setActiveLevelFilter(e.target.value as CEFRLevel | 'all')
               }
               aria-label="Filter by level"
-              className="min-h-[42px] px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-xs font-semibold cursor-pointer"
+              className="w-full sm:w-auto min-h-[42px] px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-xs font-semibold cursor-pointer"
             >
               <option value="all">All Levels (A1–C1)</option>
               {CEFR_LEVELS.map((l) => (
@@ -377,7 +377,7 @@ export const DeckExplorer: React.FC<DeckExplorerProps> = ({
               value={activeDeckFilter}
               onChange={(e) => setActiveDeckFilter(e.target.value)}
               aria-label="Filter by topic"
-              className="min-h-[42px] px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-xs font-semibold cursor-pointer"
+              className="w-full sm:w-auto min-h-[42px] px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-xs font-semibold cursor-pointer"
             >
               <option value="all">All Topics</option>
               {decks.map((d) => (
@@ -393,7 +393,7 @@ export const DeckExplorer: React.FC<DeckExplorerProps> = ({
                 setStatusFilter(e.target.value as MasteryStatus | 'all')
               }
               aria-label="Filter by learning status"
-              className="min-h-[42px] px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-xs font-semibold cursor-pointer"
+              className="w-full sm:w-auto min-h-[42px] px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-xs font-semibold cursor-pointer"
             >
               <option value="all">All Progress</option>
               <option value="new">New</option>
@@ -405,7 +405,7 @@ export const DeckExplorer: React.FC<DeckExplorerProps> = ({
             <button
               type="button"
               onClick={() => setOnlyBookmarked((prev) => !prev)}
-              className={`min-h-[42px] px-3.5 py-2 rounded-xl border text-xs font-bold inline-flex items-center gap-1.5 cursor-pointer transition-colors ${
+              className={`w-full sm:w-auto min-h-[42px] px-3.5 py-2 rounded-xl border text-xs font-bold inline-flex items-center justify-center gap-1.5 cursor-pointer transition-colors ${
                 onlyBookmarked
                   ? 'border-rose-500 bg-rose-500/10 text-rose-600 dark:text-rose-400'
                   : 'border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-300'

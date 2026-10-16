@@ -260,26 +260,26 @@ export const FlashcardStudio: React.FC<FlashcardStudioProps> = ({
     (currentWord && TOPIC_ICON_MAP[currentWord.deckId]) || Stack;
 
   return (
-    <section aria-labelledby="study-heading" className="max-w-3xl mx-auto space-y-5">
+    <section aria-labelledby="study-heading" className="max-w-3xl mx-auto space-y-3.5 sm:space-y-5">
       <h1 id="study-heading" className="sr-only">
         Flashcards Study
       </h1>
 
       {/* 1. Daily Coach & Word of the Day Banner */}
       {dailyBriefing && (
-        <div className="relative overflow-hidden rounded-2xl p-4 sm:p-5 bg-gradient-to-r from-teal-500/[0.08] via-emerald-500/[0.04] to-white dark:from-teal-500/[0.14] dark:via-slate-900 dark:to-slate-900 border border-teal-500/20 dark:border-teal-500/25 shadow-xs">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-            <div className="space-y-1.5">
-              <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-teal-500/15 text-teal-700 dark:text-teal-300 text-[11px] font-bold tracking-wide uppercase">
-                <Sparkle className="w-3.5 h-3.5" weight="fill" />
-                <span>{dailyBriefing.title}</span>
+        <div className="relative overflow-hidden rounded-2xl p-3.5 sm:p-5 bg-gradient-to-r from-teal-500/[0.08] via-emerald-500/[0.04] to-white dark:from-teal-500/[0.14] dark:via-slate-900 dark:to-slate-900 border border-teal-500/20 dark:border-teal-500/25 shadow-xs">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4">
+            <div className="space-y-1.5 min-w-0">
+              <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-teal-500/15 text-teal-700 dark:text-teal-300 text-[10px] sm:text-[11px] font-bold tracking-wide uppercase">
+                <Sparkle className="w-3.5 h-3.5 shrink-0" weight="fill" />
+                <span className="truncate">{dailyBriefing.title}</span>
               </div>
               <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
                 {dailyBriefing.message}
               </p>
 
               {wordOfTheDay && (
-                <div className="pt-1 flex flex-wrap items-center gap-2 text-xs">
+                <div className="pt-1 flex flex-wrap items-center gap-1.5 sm:gap-2 text-xs">
                   <span className="font-semibold text-slate-500 dark:text-slate-400">
                     Word of the Day:
                   </span>
@@ -314,7 +314,7 @@ export const FlashcardStudio: React.FC<FlashcardStudioProps> = ({
                     onSelectLevel(dailyBriefing.focusLevel);
                   }
                 }}
-                className="tactile-btn shrink-0 inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-teal-600 hover:bg-teal-700 text-white text-xs font-bold transition-colors cursor-pointer self-start sm:self-center shadow-xs"
+                className="tactile-btn w-full sm:w-auto shrink-0 inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-xl bg-teal-600 hover:bg-teal-700 text-white text-xs font-bold transition-colors cursor-pointer sm:self-center shadow-xs"
               >
                 <span>
                   Study{' '}
@@ -330,21 +330,21 @@ export const FlashcardStudio: React.FC<FlashcardStudioProps> = ({
         </div>
       )}
 
-      {/* 2. Sleek Unified Filter Bar (Level Segmented Control + Topic Icon Chips) */}
-      <div className="paper-card rounded-2xl p-3.5 sm:p-4 space-y-3">
+      {/* 2. Sleek Unified Filter Bar (Mobile-First Horizontal Scroll + Mode Switch) */}
+      <div className="paper-card rounded-2xl p-3 sm:p-4 space-y-2.5">
         {/* Top Row: Level Segmented Track + Due/All Mode Switch */}
-        <div className="flex flex-wrap items-center justify-between gap-2.5">
-          <div className="flex items-center gap-1 p-1 rounded-xl bg-slate-100 dark:bg-slate-800/80 overflow-x-auto no-scrollbar max-w-full">
+        <div className="flex items-center justify-between gap-2">
+          <div className="flex items-center gap-1 p-1 rounded-xl bg-slate-100 dark:bg-slate-800/80 overflow-x-auto no-scrollbar min-w-0 flex-1 sm:flex-initial">
             <button
               type="button"
               onClick={() => onSelectLevel('all')}
-              className={`shrink-0 whitespace-nowrap px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
+              className={`shrink-0 whitespace-nowrap px-2.5 sm:px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
                 selectedLevel === 'all'
                   ? 'bg-white dark:bg-slate-900 text-slate-900 dark:text-white shadow-2xs'
                   : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
               }`}
             >
-              All Levels
+              All
             </button>
             {CEFR_LEVELS.map((item) => {
               const isSelected = selectedLevel === item.level;
@@ -378,7 +378,7 @@ export const FlashcardStudio: React.FC<FlashcardStudioProps> = ({
             <button
               type="button"
               onClick={() => setStudyMode('due')}
-              className={`shrink-0 whitespace-nowrap px-3 py-1 rounded-lg transition-all cursor-pointer ${
+              className={`shrink-0 whitespace-nowrap px-2.5 sm:px-3 py-1.5 rounded-lg transition-all cursor-pointer ${
                 studyMode === 'due'
                   ? 'bg-white dark:bg-slate-900 text-slate-900 dark:text-white font-bold shadow-2xs'
                   : 'text-slate-500 dark:text-slate-400'
@@ -389,7 +389,7 @@ export const FlashcardStudio: React.FC<FlashcardStudioProps> = ({
             <button
               type="button"
               onClick={() => setStudyMode('practice')}
-              className={`shrink-0 whitespace-nowrap px-3 py-1 rounded-lg transition-all cursor-pointer ${
+              className={`shrink-0 whitespace-nowrap px-2.5 sm:px-3 py-1.5 rounded-lg transition-all cursor-pointer ${
                 studyMode === 'practice'
                   ? 'bg-white dark:bg-slate-900 text-slate-900 dark:text-white font-bold shadow-2xs'
                   : 'text-slate-500 dark:text-slate-400'
@@ -405,7 +405,7 @@ export const FlashcardStudio: React.FC<FlashcardStudioProps> = ({
           <button
             type="button"
             onClick={() => onSelectDeckId('all')}
-            className={`px-3 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap inline-flex items-center gap-1.5 transition-all cursor-pointer ${
+            className={`shrink-0 px-3 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap inline-flex items-center gap-1.5 transition-all cursor-pointer ${
               selectedDeckId === 'all'
                 ? 'bg-slate-900 text-white dark:bg-white dark:text-slate-900 font-bold shadow-2xs'
                 : 'bg-slate-100/70 dark:bg-slate-800/50 text-slate-600 dark:text-slate-400 hover:bg-slate-200/70 dark:hover:bg-slate-800'
@@ -423,7 +423,7 @@ export const FlashcardStudio: React.FC<FlashcardStudioProps> = ({
                 key={d.id}
                 type="button"
                 onClick={() => onSelectDeckId(d.id)}
-                className={`px-3 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap inline-flex items-center gap-1.5 transition-all cursor-pointer ${
+                className={`shrink-0 px-3 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap inline-flex items-center gap-1.5 transition-all cursor-pointer ${
                   isSelected
                     ? 'bg-slate-900 text-white dark:bg-white dark:text-slate-900 font-bold shadow-2xs'
                     : 'bg-slate-100/70 dark:bg-slate-800/50 text-slate-600 dark:text-slate-400 hover:bg-slate-200/70 dark:hover:bg-slate-800'
@@ -442,7 +442,7 @@ export const FlashcardStudio: React.FC<FlashcardStudioProps> = ({
           <button
             type="button"
             onClick={() => onSelectDeckId('bookmarked')}
-            className={`px-3 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap inline-flex items-center gap-1.5 transition-all cursor-pointer ${
+            className={`shrink-0 px-3 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap inline-flex items-center gap-1.5 transition-all cursor-pointer ${
               selectedDeckId === 'bookmarked'
                 ? 'bg-rose-600 text-white font-bold shadow-2xs'
                 : 'bg-slate-100/70 dark:bg-slate-800/50 text-slate-600 dark:text-slate-400 hover:bg-slate-200/70 dark:hover:bg-slate-800'
@@ -456,7 +456,7 @@ export const FlashcardStudio: React.FC<FlashcardStudioProps> = ({
 
       {/* 3. Main 3D-Stacked Flashcard Stage */}
       {!currentWord ? (
-        <div className="paper-card rounded-3xl p-8 sm:p-12 text-center space-y-5">
+        <div className="paper-card rounded-3xl p-6 sm:p-12 text-center space-y-5">
           <div className="w-14 h-14 rounded-2xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 mx-auto flex items-center justify-center">
             <CheckCircle size={32} weight="fill" aria-hidden="true" />
           </div>
@@ -468,11 +468,11 @@ export const FlashcardStudio: React.FC<FlashcardStudioProps> = ({
             </h2>
             <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
               {filteredWords.length === 0
-                ? 'Try switching back to "All Levels" or selecting another everyday topic above.'
+                ? 'Try switching back to "All" levels or selecting another everyday topic above.'
                 : 'Great job! You reviewed every scheduled card in this set. Practice all cards freely or test yourself with a quick quiz.'}
             </p>
           </div>
-          <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-2.5 sm:gap-3 pt-2">
             {filteredWords.length > 0 ? (
               <button
                 type="button"
@@ -480,7 +480,7 @@ export const FlashcardStudio: React.FC<FlashcardStudioProps> = ({
                   setStudyMode('practice');
                   setPracticeIndex(0);
                 }}
-                className="tactile-btn min-h-[44px] px-5 py-2.5 rounded-xl bg-teal-600 hover:bg-teal-700 text-white text-sm font-bold inline-flex items-center gap-2 cursor-pointer"
+                className="tactile-btn min-h-[44px] px-5 py-2.5 rounded-xl bg-teal-600 hover:bg-teal-700 text-white text-sm font-bold inline-flex items-center justify-center gap-2 cursor-pointer"
               >
                 <ArrowsClockwise size={17} weight="bold" aria-hidden="true" />
                 <span>Practice All ({filteredWords.length} Words)</span>
@@ -500,7 +500,7 @@ export const FlashcardStudio: React.FC<FlashcardStudioProps> = ({
             <button
               type="button"
               onClick={onGoToQuiz}
-              className="tactile-btn min-h-[44px] px-5 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-200 text-sm font-bold inline-flex items-center gap-2 cursor-pointer"
+              className="tactile-btn min-h-[44px] px-5 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-200 text-sm font-bold inline-flex items-center justify-center gap-2 cursor-pointer"
             >
               <span>Take a Practice Quiz</span>
               <ArrowRight size={17} aria-hidden="true" />
@@ -514,35 +514,36 @@ export const FlashcardStudio: React.FC<FlashcardStudioProps> = ({
             <div className="h-1.5 w-full bg-gradient-to-r from-teal-500 via-emerald-500 to-sky-500" />
 
             {/* Card Top Bar: Level Pill + Topic Pill + Queue Counter + Actions */}
-            <div className="px-6 py-4 border-b border-slate-100 dark:border-slate-800/80 flex flex-wrap items-center justify-between gap-2 text-xs">
-              <div className="flex flex-wrap items-center gap-2">
+            <div className="px-4 sm:px-6 py-3 sm:py-4 border-b border-slate-100 dark:border-slate-800/80 flex items-center justify-between gap-2 text-xs">
+              <div className="flex items-center gap-1.5 sm:gap-2 min-w-0 overflow-x-auto no-scrollbar">
                 <span
-                  className={`px-2.5 py-1 rounded-lg font-bold border ${
+                  className={`shrink-0 px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-lg font-bold border ${
                     currentLevelMeta?.badgeClass || ''
                   }`}
                 >
-                  {currentWord.cefr} • {currentLevelMeta?.name}
+                  {currentWord.cefr}
+                  <span className="hidden xs:inline"> • {currentLevelMeta?.name}</span>
                 </span>
                 {currentDeck && (
-                  <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-semibold">
-                    <CurrentTopicIcon size={14} weight="fill" className="text-teal-600 dark:text-teal-400" />
-                    <span>{currentDeck.name}</span>
+                  <span className="shrink-0 inline-flex items-center gap-1.5 px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-semibold truncate">
+                    <CurrentTopicIcon size={13} weight="fill" className="text-teal-600 dark:text-teal-400 shrink-0" />
+                    <span className="truncate">{currentDeck.name}</span>
                   </span>
                 )}
               </div>
 
-              <div className="flex items-center gap-2">
+              <div className="shrink-0 flex items-center gap-1 sm:gap-2">
                 <span className="text-[11px] font-mono-ipa font-semibold text-slate-400 dark:text-slate-500 px-2 py-0.5 rounded-md bg-slate-50 dark:bg-slate-800/50">
                   {studyMode === 'due'
                     ? `${dueWords.length} due`
-                    : `${(practiceIndex % Math.max(1, activeQueue.length)) + 1} / ${activeQueue.length}`}
+                    : `${(practiceIndex % Math.max(1, activeQueue.length)) + 1}/${activeQueue.length}`}
                 </span>
 
                 <button
                   type="button"
                   onClick={() => onEditWordInAdmin(currentWord.id)}
                   title="Edit this word"
-                  className="px-2.5 py-1.5 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white inline-flex items-center gap-1 font-semibold transition-colors cursor-pointer"
+                  className="p-2 sm:px-2.5 sm:py-1.5 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white inline-flex items-center gap-1 font-semibold transition-colors cursor-pointer"
                 >
                   <PencilSimple size={15} aria-hidden="true" />
                   <span className="hidden sm:inline">Edit</span>
@@ -568,24 +569,24 @@ export const FlashcardStudio: React.FC<FlashcardStudioProps> = ({
             </div>
 
             {/* Front of Card: Headword, Part of Speech & Interactive Phonetic Audio Pill */}
-            <div className="px-6 sm:px-12 py-10 sm:py-12 text-center space-y-6">
-              <div className="space-y-3">
+            <div className="px-4 sm:px-12 py-6 sm:py-12 text-center space-y-5 sm:space-y-6">
+              <div className="space-y-2.5 sm:space-y-3">
                 <span className="inline-block px-3 py-0.5 rounded-full bg-slate-100 dark:bg-slate-800 text-xs font-semibold italic font-serif-editorial text-slate-600 dark:text-slate-400">
                   {currentWord.partOfSpeech}
                 </span>
 
-                <h2 className="font-serif-editorial text-4xl sm:text-6xl font-bold tracking-tight text-slate-900 dark:text-white">
+                <h2 className="font-serif-editorial text-3xl sm:text-5xl md:text-6xl font-bold tracking-tight text-slate-900 dark:text-white break-words px-2">
                   {currentWord.word}
                 </h2>
 
-                <div className="flex items-center justify-center pt-1">
+                <div className="flex items-center justify-center pt-0.5">
                   <button
                     type="button"
                     onClick={() => speakText(currentWord.word, voiceAccent)}
                     className="group inline-flex items-center gap-2.5 pl-4 pr-3 py-1.5 rounded-full bg-slate-100/90 hover:bg-teal-50 dark:bg-slate-800 dark:hover:bg-teal-950/50 border border-slate-200/80 dark:border-slate-700 hover:border-teal-300 dark:hover:border-teal-700 transition-all cursor-pointer"
                     title="Click or press P to hear pronunciation"
                   >
-                    <span className="font-mono-ipa text-sm text-slate-600 dark:text-slate-300 group-hover:text-teal-700 dark:group-hover:text-teal-300">
+                    <span className="font-mono-ipa text-xs sm:text-sm text-slate-600 dark:text-slate-300 group-hover:text-teal-700 dark:group-hover:text-teal-300">
                       {currentWord.phonetic}
                     </span>
                     <span className="w-7 h-7 rounded-full bg-teal-600 text-white flex items-center justify-center shadow-2xs group-hover:scale-105 transition-transform">
@@ -597,9 +598,9 @@ export const FlashcardStudio: React.FC<FlashcardStudioProps> = ({
 
               {/* Unrevealed State: Hint + Reveal Button */}
               {!isRevealed && (
-                <div className="pt-4 max-w-md mx-auto space-y-5">
+                <div className="pt-2 sm:pt-4 max-w-md mx-auto space-y-4 sm:space-y-5">
                   {showHint ? (
-                    <div className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200/80 dark:border-slate-700/80 text-xs text-slate-600 dark:text-slate-300">
+                    <div className="p-3.5 sm:p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200/80 dark:border-slate-700/80 text-xs text-slate-600 dark:text-slate-300">
                       <span className="font-bold text-slate-900 dark:text-white block mb-1.5">
                         Common phrases with “{currentWord.word}”:
                       </span>
@@ -631,7 +632,7 @@ export const FlashcardStudio: React.FC<FlashcardStudioProps> = ({
                         setIsRevealed(true);
                         speakText(currentWord.word, voiceAccent);
                       }}
-                      className="tactile-btn w-full sm:w-auto min-w-[260px] min-h-[50px] px-8 py-3.5 rounded-2xl bg-slate-900 hover:bg-slate-800 dark:bg-white dark:hover:bg-slate-100 text-white dark:text-slate-900 text-sm font-bold inline-flex items-center justify-center gap-3 cursor-pointer shadow-md"
+                      className="tactile-btn w-full sm:w-auto sm:min-w-[260px] min-h-[48px] sm:min-h-[50px] px-6 sm:px-8 py-3 sm:py-3.5 rounded-2xl bg-slate-900 hover:bg-slate-800 dark:bg-white dark:hover:bg-slate-100 text-white dark:text-slate-900 text-sm font-bold inline-flex items-center justify-center gap-3 cursor-pointer shadow-md"
                     >
                       <Eye size={18} weight="bold" aria-hidden="true" />
                       <span>Reveal Meaning</span>

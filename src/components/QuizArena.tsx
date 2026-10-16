@@ -164,35 +164,35 @@ export const QuizArena: React.FC<QuizArenaProps> = ({
   return (
     <section aria-labelledby="quiz-heading" className="max-w-2xl mx-auto space-y-5">
       {/* Top Quiz Mode, Level & Topic Selector */}
-      <div className="paper-card rounded-2xl p-4 space-y-3">
-        <div className="flex flex-wrap items-center justify-between gap-2">
-          <div className="inline-flex p-1 rounded-xl bg-slate-100 dark:bg-slate-800 text-xs font-medium">
+      <div className="paper-card rounded-2xl p-3.5 sm:p-4 space-y-3">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5">
+          <div className="grid grid-cols-3 sm:inline-flex p-1 rounded-xl bg-slate-100 dark:bg-slate-800 text-xs font-medium w-full sm:w-auto">
             <button
               type="button"
               onClick={() => resetQuiz('cloze')}
-              className={`px-3 py-1.5 rounded-lg transition-colors cursor-pointer ${
+              className={`px-2 sm:px-3 py-1.5 rounded-lg transition-colors text-center truncate cursor-pointer ${
                 quizMode === 'cloze'
                   ? 'bg-white dark:bg-slate-900 text-slate-900 dark:text-white font-semibold shadow-2xs'
                   : 'text-slate-600 dark:text-slate-400'
               }`}
             >
-              Fill in the Blank
+              Fill Blank
             </button>
             <button
               type="button"
               onClick={() => resetQuiz('multiple-choice')}
-              className={`px-3 py-1.5 rounded-lg transition-colors cursor-pointer ${
+              className={`px-2 sm:px-3 py-1.5 rounded-lg transition-colors text-center truncate cursor-pointer ${
                 quizMode === 'multiple-choice'
                   ? 'bg-white dark:bg-slate-900 text-slate-900 dark:text-white font-semibold shadow-2xs'
                   : 'text-slate-600 dark:text-slate-400'
               }`}
             >
-              Match Meaning
+              Meaning
             </button>
             <button
               type="button"
               onClick={() => resetQuiz('spelling')}
-              className={`px-3 py-1.5 rounded-lg transition-colors cursor-pointer ${
+              className={`px-2 sm:px-3 py-1.5 rounded-lg transition-colors text-center truncate cursor-pointer ${
                 quizMode === 'spelling'
                   ? 'bg-white dark:bg-slate-900 text-slate-900 dark:text-white font-semibold shadow-2xs'
                   : 'text-slate-600 dark:text-slate-400'
@@ -202,14 +202,14 @@ export const QuizArena: React.FC<QuizArenaProps> = ({
             </button>
           </div>
 
-          <div className="flex flex-wrap items-center gap-2">
+          <div className="grid grid-cols-2 sm:flex sm:flex-wrap items-center gap-2 w-full sm:w-auto">
             <select
               value={selectedLevel}
               onChange={(e) =>
                 resetQuiz(undefined, undefined, e.target.value as CEFRLevel | 'all')
               }
               aria-label="Choose level for quiz"
-              className="min-h-[36px] px-2.5 py-1.5 rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-800 text-xs font-medium cursor-pointer"
+              className="w-full sm:w-auto min-h-[38px] px-2.5 py-1.5 rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-800 text-xs font-medium cursor-pointer"
             >
               <option value="all">All Levels</option>
               {CEFR_LEVELS.map((l) => (
@@ -223,7 +223,7 @@ export const QuizArena: React.FC<QuizArenaProps> = ({
               value={selectedDeckId}
               onChange={(e) => resetQuiz(undefined, e.target.value)}
               aria-label="Choose topic for quiz"
-              className="min-h-[36px] px-2.5 py-1.5 rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-800 text-xs font-medium cursor-pointer"
+              className="w-full sm:w-auto min-h-[38px] px-2.5 py-1.5 rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-800 text-xs font-medium cursor-pointer"
             >
               <option value="all">All Topics</option>
               {decks.map((d) => (

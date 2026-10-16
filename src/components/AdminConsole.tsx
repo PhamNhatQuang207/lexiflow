@@ -288,7 +288,7 @@ export const AdminConsole: React.FC<AdminConsoleProps> = ({
       {subTab === 'words' && (
         <div className="grid grid-cols-1 md:grid-cols-12 gap-5">
           {/* Left Column (5 cols): Simple Word List */}
-          <div className="md:col-span-5 paper-card rounded-2xl p-4 flex flex-col gap-2.5 max-h-[640px]">
+          <div className="md:col-span-5 paper-card rounded-2xl p-4 flex flex-col gap-2.5 max-h-[240px] md:max-h-[640px]">
             <div className="flex items-center justify-between gap-2">
               <div className="relative flex-1">
                 <MagnifyingGlass
