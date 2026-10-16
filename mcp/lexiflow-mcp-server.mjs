@@ -56,10 +56,6 @@ async function writeDb(db) {
   return res.json();
 }
 
-function isWordDue(srs) {
-  if (!srs || !srs.dueDate) return true;
-  return srs.dueDate <= getTodayISO();
-}
 
 // ============================================================================
 // Tool Definitions
@@ -69,7 +65,7 @@ const TOOLS = [
   {
     name: 'get_daily_status',
     description:
-      'Get a complete overview of the student’s vocabulary database, including total words, words due today, study streak, counts per CEFR level (A1-C1), counts per topic, words the student struggles with, and the active Daily Briefing.',
+      'Get an overview of the shared vocabulary library: total words, counts per CEFR level (A1-C1), word counts per topic, and the active Daily Briefing. Learning progress (streaks, due words, mastery) is kept privately on each learner’s device and is not available here.',
     inputSchema: {
       type: 'object',
       properties: {},
@@ -79,7 +75,7 @@ const TOOLS = [
   {
     name: 'list_words',
     description:
-      'List or search vocabulary words filtered by CEFR level (A1, A2, B1, B2, C1), topic ID (family, work, travel, daily, food, feelings, study), SRS status (new, learning, review, mastered), due status, or search text.',
+      'List or search vocabulary words filtered by CEFR level (A1, A2, B1, B2, C1), topic ID (family, work, travel, daily, food, feelings, study), or search text.',
     inputSchema: {
       type: 'object',
       properties: {
@@ -92,15 +88,6 @@ const TOOLS = [
           type: 'string',
           description: 'Filter by topic/deck ID (e.g. family, work, travel, daily, food, feelings, study)',
         },
-        status: {
-          type: 'string',
-          enum: ['new', 'learning', 'review', 'mastered'],
-          description: 'Filter by SRS learning status',
-        },
-        dueOnly: {
-          type: 'boolean',
-          description: 'If true, only return words due for review today',
-        },
         search: {
           type: 'string',
           description: 'Search query matching headword, definition, or example sentence',
@@ -112,7 +99,7 @@ const TOOLS = [
   {
     name: 'add_words',
     description:
-      'Add one or more new English vocabulary words to the student’s web app. Automatically assigns default SRS scheduling if omitted and syncs live to the browser.',
+      'Add one or more new English vocabulary words to the shared library. An existing headword (case-insensitive) is updated in place instead of duplicated. Learners’ browsers pick up changes automatically.',
     inputSchema: {
       type: 'object',
       properties: {
@@ -162,9 +149,6 @@ const TOOLS = [
                 type: 'string',
                 description: 'Short memory tip or association to remember the word easily',
               },
-              bookmarked: {
-                type: 'boolean',
-              },
             },
             required: ['word', 'partOfSpeech', 'cefr', 'deckId', 'definition', 'example'],
           },
@@ -177,7 +161,7 @@ const TOOLS = [
   {
     name: 'update_word',
     description:
-      'Update an existing vocabulary word by ID or headword (modify definition, example, CEFR level, topic, memory tip, bookmark, or SRS status/dueDate).',
+      'Update an existing vocabulary word by ID or headword (modify definition, example, phonetic, synonyms, collocations, CEFR level, topic, or memory tip).',
     inputSchema: {
       type: 'object',
       properties: {
@@ -203,15 +187,6 @@ const TOOLS = [
             antonyms: { type: 'array', items: { type: 'string' } },
             collocations: { type: 'array', items: { type: 'string' } },
             mnemonic: { type: 'string' },
-            bookmarked: { type: 'boolean' },
-            dueDate: {
-              type: 'string',
-              description: 'ISO date YYYY-MM-DD to reschedule review',
-            },
-            srsStatus: {
-              type: 'string',
-              enum: ['new', 'learning', 'review', 'mastered'],
-            },
           },
         },
       },
@@ -288,7 +263,7 @@ const TOOLS = [
         },
         message: {
           type: 'string',
-          description: 'Short daily tip or study plan for the student',
+          description: 'Short daily tip or study plan for learners',
         },
         focusLevel: {
           type: 'string',
@@ -332,64 +307,21 @@ async function runTool(name, args, db) {
   switch (name) {
     case 'get_daily_status': {
       const levelCounts = { A1: 0, A2: 0, B1: 0, B2: 0, C1: 0 };
-      const statusCounts = { new: 0, learning: 0, review: 0, mastered: 0 };
       const topicSummary = {};
-
       for (const deck of db.decks) {
-        topicSummary[deck.id] = {
-          id: deck.id,
-          name: deck.name,
-          totalWords: 0,
-          dueWords: 0,
-        };
+        topicSummary[deck.id] = { id: deck.id, name: deck.name, totalWords: 0 };
       }
-
-      let dueCount = 0;
-      const strugglingWords = [];
-
       for (const w of db.words) {
         if (levelCounts[w.cefr] !== undefined) levelCounts[w.cefr]++;
-        if (w.srs && statusCounts[w.srs.status] !== undefined) {
-          statusCounts[w.srs.status]++;
-        }
-        const due = isWordDue(w.srs);
-        if (due) dueCount++;
-
-        if (topicSummary[w.deckId]) {
-          topicSummary[w.deckId].totalWords++;
-          if (due) topicSummary[w.deckId].dueWords++;
-        }
-
-        if ((w.srs && w.srs.lapses > 0) || (w.srs && w.srs.status === 'learning')) {
-          strugglingWords.push({
-            id: w.id,
-            word: w.word,
-            cefr: w.cefr,
-            topic: w.deckId,
-            status: w.srs?.status,
-            lapses: w.srs?.lapses || 0,
-          });
-        }
+        if (topicSummary[w.deckId]) topicSummary[w.deckId].totalWords++;
       }
-
-      const todayActivity = db.stats?.activityHistory?.[today] || {
-        reviewedCount: 0,
-        correctCount: 0,
-        quizCompletedCount: 0,
-      };
 
       return {
         date: today,
         updatedAt: db.updatedAt,
         totalWords: db.words.length,
-        dueTodayCount: dueCount,
-        streakDays: db.stats?.streakDays || 0,
-        dailyGoal: db.stats?.dailyGoal || 12,
-        todayReviewed: todayActivity.reviewedCount,
         levelCounts,
-        statusCounts,
         topics: Object.values(topicSummary),
-        strugglingWords: strugglingWords.slice(0, 10),
         dailyBriefing: db.dailyBriefing || null,
       };
     }
@@ -401,12 +333,6 @@ async function runTool(name, args, db) {
       }
       if (args.topic) {
         filtered = filtered.filter((w) => w.deckId === args.topic);
-      }
-      if (args.status) {
-        filtered = filtered.filter((w) => w.srs?.status === args.status);
-      }
-      if (args.dueOnly) {
-        filtered = filtered.filter((w) => isWordDue(w.srs));
       }
       if (args.search) {
         const q = String(args.search).toLowerCase();
@@ -429,9 +355,9 @@ async function runTool(name, args, db) {
           deckId: w.deckId,
           definition: w.definition,
           example: w.example,
-          status: w.srs?.status,
-          dueDate: w.srs?.dueDate,
-          bookmarked: w.bookmarked,
+          synonyms: w.synonyms,
+          collocations: w.collocations,
+          mnemonic: w.mnemonic,
         })),
       };
     }
@@ -467,19 +393,6 @@ async function runTool(name, args, db) {
           antonyms: Array.isArray(item.antonyms) ? item.antonyms : [],
           collocations: Array.isArray(item.collocations) ? item.collocations : [],
           mnemonic: item.mnemonic || '',
-          bookmarked: Boolean(item.bookmarked),
-          srs:
-            existingIdx >= 0
-              ? db.words[existingIdx].srs
-              : {
-                  status: 'new',
-                  interval: 0,
-                  repetition: 0,
-                  efactor: 2.5,
-                  dueDate: today,
-                  lapses: 0,
-                  correctStreak: 0,
-                },
         };
 
         if (existingIdx >= 0) {
@@ -522,17 +435,8 @@ async function runTool(name, args, db) {
         throw new Error(`Word not found for id="${id || ''}" or wordLookup="${wordLookup || ''}".`);
       }
 
-      const current = db.words[idx];
-      const nextSrs = { ...current.srs };
-      if (updates.dueDate) nextSrs.dueDate = updates.dueDate;
-      if (updates.srsStatus) nextSrs.status = updates.srsStatus;
-
-      const { dueDate, srsStatus, ...fieldUpdates } = updates;
-      const updatedWord = {
-        ...current,
-        ...fieldUpdates,
-        srs: nextSrs,
-      };
+      const { id: _ignoredId, ...fieldUpdates } = updates;
+      const updatedWord = { ...db.words[idx], ...fieldUpdates };
 
       db.words[idx] = updatedWord;
       await writeDb(db);

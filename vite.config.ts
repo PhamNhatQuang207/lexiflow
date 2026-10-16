@@ -4,14 +4,16 @@ import tailwindcss from '@tailwindcss/vite';
 import fs from 'node:fs';
 import path from 'node:path';
 import type { ServerResponse } from 'node:http';
-import {
-  INITIAL_DECKS,
-  INITIAL_WORDS,
-  createInitialUserStats,
-} from './src/data/initialVocabulary';
+import { INITIAL_DECKS, INITIAL_WORDS } from './src/data/initialVocabulary';
 import { LexiFlowDatabase } from './src/types/vocab';
 import { getTodayISO } from './src/utils/srs';
-import { DbWrite, isAuthorized, mergeWrite, readBaseUpdatedAt } from './api/_lib/db-core.js';
+import {
+  DbWrite,
+  isAuthorized,
+  mergeWrite,
+  readBaseUpdatedAt,
+  toVocabEntry,
+} from './api/_lib/db-core.js';
 
 const DB_DIR = path.resolve(__dirname, 'data');
 const DB_PATH = path.join(DB_DIR, 'lexiflow-db.json');
@@ -36,8 +38,7 @@ function ensureDatabaseFile(): LexiFlowDatabase {
   const initialDb: LexiFlowDatabase = {
     updatedAt: new Date().toISOString(),
     decks: INITIAL_DECKS,
-    words: INITIAL_WORDS,
-    stats: createInitialUserStats(),
+    words: INITIAL_WORDS.map(toVocabEntry),
     dailyBriefing: {
       date: today,
       title: "Today's Study Plan: Travel & Everyday Conversations",

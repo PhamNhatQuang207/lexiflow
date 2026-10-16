@@ -110,11 +110,14 @@ export interface DailyBriefing {
   updatedAt: string;
 }
 
+/** A word as shared by everyone; review progress and bookmarks stay on each device. */
+export type VocabEntry = Omit<VocabWord, 'srs' | 'bookmarked'>;
+
+/** Shared content served by /api/db. Learning progress is never stored here. */
 export interface LexiFlowDatabase {
   updatedAt: string;
   decks: VocabDeck[];
-  words: VocabWord[];
-  stats: UserStats;
+  words: VocabEntry[];
   dailyBriefing?: DailyBriefing;
 }
 

@@ -7,6 +7,7 @@ import {
   SRSRating,
   UserStats,
   VocabDeck,
+  VocabEntry,
   VocabWord,
 } from './types/vocab';
 import {
@@ -14,7 +15,13 @@ import {
   INITIAL_WORDS,
   createInitialUserStats,
 } from './data/initialVocabulary';
-import { computeNextSRS, computeStreakDays, getTodayISO, isWordDue } from './utils/srs';
+import {
+  computeNextSRS,
+  computeStreakDays,
+  createInitialSRS,
+  getTodayISO,
+  isWordDue,
+} from './utils/srs';
 import { Navbar } from './components/Navbar';
 import { FlashcardStudio } from './components/FlashcardStudio';
 import { QuizArena } from './components/QuizArena';
@@ -41,7 +48,7 @@ function readStoredPasscode(): string {
 /** Asks for the write passcode (LEXIFLOW_TOKEN); returns true if one was entered. */
 function askForPasscode(): boolean {
   const entered = window.prompt(
-    'Enter your LexiFlow passcode to save progress to the cloud.\nCancel to keep progress on this device only.'
+    'Enter your LexiFlow passcode to save changes to the shared words and topics.\nCancel to keep this change on this device only.'
   );
   if (!entered) return false;
   try {
@@ -50,6 +57,30 @@ function askForPasscode(): boolean {
     return false;
   }
   return true;
+}
+
+type WordLike = VocabEntry & Partial<Pick<VocabWord, 'srs' | 'bookmarked'>>;
+
+/** The part of the app state everyone shares, exactly as stored by /api/db. */
+function toSharedContent(
+  decks: VocabDeck[],
+  words: WordLike[],
+  dailyBriefing: DailyBriefing | null
+) {
+  return {
+    decks,
+    words: words.map(({ srs, bookmarked, ...entry }): VocabEntry => entry),
+    dailyBriefing,
+  };
+}
+
+/** Combines shared word content with this device's review progress and bookmarks. */
+function withLocalProgress(entries: WordLike[], localWords: VocabWord[]): VocabWord[] {
+  const localById = new Map(localWords.map((w) => [w.id, w]));
+  return entries.map(({ srs, bookmarked, ...entry }) => {
+    const local = localById.get(entry.id);
+    return { ...entry, srs: local?.srs ?? createInitialSRS(), bookmarked: local?.bookmarked ?? false };
+  });
 }
 
 export const App: React.FC = () => {
@@ -61,7 +92,6 @@ export const App: React.FC = () => {
   const [dailyBriefing, setDailyBriefing] = useState<DailyBriefing | null>(null);
 
   const lastServerUpdatedAtRef = useRef<string>('');
-  const isApplyingRemoteUpdateRef = useRef<boolean>(false);
   const hasHydratedFromServerRef = useRef<boolean>(false);
 
   const [darkMode, setDarkMode] = useState<boolean>(() => {
@@ -113,28 +143,27 @@ export const App: React.FC = () => {
     return createInitialUserStats();
   });
 
+  // Shared content as stored on the server; word progress and bookmarks stay on this device.
+  const sharedContent = useMemo(
+    () => toSharedContent(decks, words, dailyBriefing),
+    [decks, words, dailyBriefing]
+  );
+  const sharedContentKey = useMemo(() => JSON.stringify(sharedContent), [sharedContent]);
+  const lastSyncedContentKeyRef = useRef<string>('');
+
   const applyRemoteDb = useCallback((remoteDb: LexiFlowDatabase | null) => {
     if (!remoteDb?.updatedAt) return;
     hasHydratedFromServerRef.current = true;
     if (remoteDb.updatedAt === lastServerUpdatedAtRef.current) return;
 
-    isApplyingRemoteUpdateRef.current = true;
     lastServerUpdatedAtRef.current = remoteDb.updatedAt;
-    if (Array.isArray(remoteDb.decks) && remoteDb.decks.length > 0) {
-      setDecks(remoteDb.decks);
-    }
-    if (Array.isArray(remoteDb.words) && remoteDb.words.length > 0) {
-      setWords(remoteDb.words);
-    }
-    if (remoteDb.stats) {
-      setStats(remoteDb.stats);
-    }
-    if (remoteDb.dailyBriefing !== undefined) {
-      setDailyBriefing(remoteDb.dailyBriefing || null);
-    }
-    setTimeout(() => {
-      isApplyingRemoteUpdateRef.current = false;
-    }, 50);
+    const remoteBriefing = remoteDb.dailyBriefing || null;
+    lastSyncedContentKeyRef.current = JSON.stringify(
+      toSharedContent(remoteDb.decks, remoteDb.words, remoteBriefing)
+    );
+    setDecks(remoteDb.decks);
+    setWords((localWords) => withLocalProgress(remoteDb.words, localWords));
+    setDailyBriefing(remoteBriefing);
   }, []);
 
   // Poll /api/db so changes made by the MCP Agent appear in the browser
@@ -160,11 +189,11 @@ export const App: React.FC = () => {
     };
   }, [applyRemoteDb]);
 
-  // Push browser state changes back to /api/db so MCP Agent sees latest student progress.
+  // Push edits to shared content (words, topics, briefing) back to /api/db.
   // Pushes run one at a time, each based on the last version the server confirmed;
   // a 409 means another writer (e.g. the daily agent) got there first, so adopt its version.
-  const latestStateRef = useRef({ decks, words, stats, dailyBriefing });
-  latestStateRef.current = { decks, words, stats, dailyBriefing };
+  const latestContentRef = useRef(sharedContent);
+  latestContentRef.current = sharedContent;
   const isPushingRef = useRef(false);
   const hasPendingPushRef = useRef(false);
   const hasAskedForPasscodeRef = useRef(false);
@@ -178,20 +207,19 @@ export const App: React.FC = () => {
     try {
       do {
         hasPendingPushRef.current = false;
+        const content = latestContentRef.current;
         const res = await fetch('/api/db', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
             Authorization: `Bearer ${readStoredPasscode()}`,
           },
-          body: JSON.stringify({
-            ...latestStateRef.current,
-            baseUpdatedAt: lastServerUpdatedAtRef.current,
-          }),
+          body: JSON.stringify({ ...content, baseUpdatedAt: lastServerUpdatedAtRef.current }),
         });
         if (res.ok) {
           const saved = (await res.json()) as LexiFlowDatabase;
           lastServerUpdatedAtRef.current = saved.updatedAt;
+          lastSyncedContentKeyRef.current = JSON.stringify(content);
         } else if (res.status === 409) {
           applyRemoteDb((await res.json()) as LexiFlowDatabase | null);
           hasPendingPushRef.current = false;
@@ -208,11 +236,14 @@ export const App: React.FC = () => {
   }, [applyRemoteDb]);
 
   useEffect(() => {
-    if (!hasHydratedFromServerRef.current || isApplyingRemoteUpdateRef.current) {
+    if (
+      !hasHydratedFromServerRef.current ||
+      sharedContentKey === lastSyncedContentKeyRef.current
+    ) {
       return;
     }
     pushToServer();
-  }, [decks, words, stats, dailyBriefing, pushToServer]);
+  }, [sharedContentKey, pushToServer]);
 
   useEffect(() => {
     const root = document.documentElement;
@@ -288,8 +319,6 @@ export const App: React.FC = () => {
       return {
         ...prev,
         lastActiveDate: today,
-        // Stored so the MCP agent sees it; the UI recomputes it so missed days show.
-        streakDays: computeStreakDays(activityHistory, today),
         activityHistory,
       };
     });
