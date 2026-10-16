@@ -3,6 +3,7 @@ import react from '@vitejs/plugin-react';
 import tailwindcss from '@tailwindcss/vite';
 import fs from 'node:fs';
 import path from 'node:path';
+import type { ServerResponse } from 'node:http';
 import {
   INITIAL_DECKS,
   INITIAL_WORDS,
@@ -10,6 +11,7 @@ import {
 } from './src/data/initialVocabulary';
 import { LexiFlowDatabase } from './src/types/vocab';
 import { getTodayISO } from './src/utils/srs';
+import { DbWrite, isAuthorized, mergeWrite, readBaseUpdatedAt } from './api/_lib/db-core.js';
 
 const DB_DIR = path.resolve(__dirname, 'data');
 const DB_PATH = path.join(DB_DIR, 'lexiflow-db.json');
@@ -52,6 +54,13 @@ function ensureDatabaseFile(): LexiFlowDatabase {
   return initialDb;
 }
 
+function sendJson(res: ServerResponse, status: number, body: unknown) {
+  res.statusCode = status;
+  res.setHeader('Content-Type', 'application/json');
+  res.setHeader('Cache-Control', 'no-store');
+  res.end(JSON.stringify(body));
+}
+
 function lexiflowDbPlugin(): Plugin {
   return {
     name: 'lexiflow-db-bridge',
@@ -60,46 +69,38 @@ function lexiflowDbPlugin(): Plugin {
 
       server.middlewares.use('/api/db', (req, res, next) => {
         if (req.method === 'GET') {
-          const db = ensureDatabaseFile();
-          res.setHeader('Content-Type', 'application/json');
-          res.setHeader('Cache-Control', 'no-store');
-          res.end(JSON.stringify(db));
+          sendJson(res, 200, ensureDatabaseFile());
           return;
         }
 
         if (req.method === 'POST') {
+          // Auth is optional in dev: only enforced when LEXIFLOW_TOKEN is set locally.
+          const token = process.env.LEXIFLOW_TOKEN;
+          if (token && !isAuthorized(req.headers.authorization, token)) {
+            sendJson(res, 401, { error: 'Unauthorized' });
+            return;
+          }
+
           let body = '';
           req.on('data', (chunk) => {
             body += chunk.toString();
           });
           req.on('end', () => {
             try {
-              const incoming = JSON.parse(body || '{}');
+              const incoming = JSON.parse(body || '{}') as DbWrite;
+              const base = readBaseUpdatedAt(incoming);
               const current = ensureDatabaseFile();
-              const nextDb: LexiFlowDatabase = {
-                updatedAt: new Date().toISOString(),
-                decks: Array.isArray(incoming.decks) ? incoming.decks : current.decks,
-                words: Array.isArray(incoming.words) ? incoming.words : current.words,
-                stats:
-                  incoming.stats && typeof incoming.stats === 'object'
-                    ? incoming.stats
-                    : current.stats,
-                dailyBriefing:
-                  incoming.dailyBriefing !== undefined
-                    ? incoming.dailyBriefing
-                    : current.dailyBriefing,
-              };
+              if (current.updatedAt !== base) {
+                sendJson(res, 409, current);
+                return;
+              }
+              const nextDb = mergeWrite(current, incoming);
               fs.writeFileSync(DB_PATH, JSON.stringify(nextDb, null, 2), 'utf-8');
-              res.setHeader('Content-Type', 'application/json');
-              res.end(JSON.stringify(nextDb));
+              sendJson(res, 200, nextDb);
             } catch (err) {
-              res.statusCode = 400;
-              res.setHeader('Content-Type', 'application/json');
-              res.end(
-                JSON.stringify({
-                  error: err instanceof Error ? err.message : 'Invalid JSON payload',
-                })
-              );
+              sendJson(res, 400, {
+                error: err instanceof Error ? err.message : 'Invalid JSON payload',
+              });
             }
           });
           return;

@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "lexiflow": {
+      "command": "node",
+      "args": ["mcp/lexiflow-mcp-server.mjs"],
+      "env": {
+        "LEXIFLOW_API_URL": "${LEXIFLOW_API_URL:-http://localhost:5173}",
+        "LEXIFLOW_TOKEN": "${LEXIFLOW_TOKEN:-}"
+      }
+    }
+  }
+}

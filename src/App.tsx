@@ -27,6 +27,30 @@ const STORAGE_WORDS_KEY = 'lexiflow_words_v2';
 const STORAGE_DECKS_KEY = 'lexiflow_decks_v2';
 const STORAGE_STATS_KEY = 'lexiflow_stats_v2';
 const STORAGE_THEME_KEY = 'lexiflow_theme_v1';
+const STORAGE_PASSCODE_KEY = 'lexiflow_passcode_v1';
+const SERVER_POLL_MS = 60_000;
+
+function readStoredPasscode(): string {
+  try {
+    return localStorage.getItem(STORAGE_PASSCODE_KEY) ?? '';
+  } catch {
+    return '';
+  }
+}
+
+/** Asks for the write passcode (LEXIFLOW_TOKEN); returns true if one was entered. */
+function askForPasscode(): boolean {
+  const entered = window.prompt(
+    'Enter your LexiFlow passcode to save progress to the cloud.\nCancel to keep progress on this device only.'
+  );
+  if (!entered) return false;
+  try {
+    localStorage.setItem(STORAGE_PASSCODE_KEY, entered.trim());
+  } catch {
+    return false;
+  }
+  return true;
+}
 
 export const App: React.FC = () => {
   const [activeTab, setActiveTab] = useState<ActiveTab>('study');
@@ -89,7 +113,31 @@ export const App: React.FC = () => {
     return createInitialUserStats();
   });
 
-  // Poll /api/db so changes made by the MCP Agent appear live in the browser
+  const applyRemoteDb = useCallback((remoteDb: LexiFlowDatabase | null) => {
+    if (!remoteDb?.updatedAt) return;
+    hasHydratedFromServerRef.current = true;
+    if (remoteDb.updatedAt === lastServerUpdatedAtRef.current) return;
+
+    isApplyingRemoteUpdateRef.current = true;
+    lastServerUpdatedAtRef.current = remoteDb.updatedAt;
+    if (Array.isArray(remoteDb.decks) && remoteDb.decks.length > 0) {
+      setDecks(remoteDb.decks);
+    }
+    if (Array.isArray(remoteDb.words) && remoteDb.words.length > 0) {
+      setWords(remoteDb.words);
+    }
+    if (remoteDb.stats) {
+      setStats(remoteDb.stats);
+    }
+    if (remoteDb.dailyBriefing !== undefined) {
+      setDailyBriefing(remoteDb.dailyBriefing || null);
+    }
+    setTimeout(() => {
+      isApplyingRemoteUpdateRef.current = false;
+    }, 50);
+  }, []);
+
+  // Poll /api/db so changes made by the MCP Agent appear in the browser
   useEffect(() => {
     let isMounted = true;
 
@@ -98,74 +146,73 @@ export const App: React.FC = () => {
         const res = await fetch('/api/db', { cache: 'no-store' });
         if (!res.ok) return;
         const remoteDb = (await res.json()) as LexiFlowDatabase;
-        if (!isMounted || !remoteDb || !remoteDb.updatedAt) return;
-
-        if (remoteDb.updatedAt !== lastServerUpdatedAtRef.current) {
-          isApplyingRemoteUpdateRef.current = true;
-          lastServerUpdatedAtRef.current = remoteDb.updatedAt;
-          if (Array.isArray(remoteDb.decks) && remoteDb.decks.length > 0) {
-            setDecks(remoteDb.decks);
-          }
-          if (Array.isArray(remoteDb.words) && remoteDb.words.length > 0) {
-            setWords(remoteDb.words);
-          }
-          if (remoteDb.stats) {
-            setStats(remoteDb.stats);
-          }
-          if (remoteDb.dailyBriefing !== undefined) {
-            setDailyBriefing(remoteDb.dailyBriefing || null);
-          }
-          hasHydratedFromServerRef.current = true;
-          setTimeout(() => {
-            isApplyingRemoteUpdateRef.current = false;
-          }, 50);
-        } else {
-          hasHydratedFromServerRef.current = true;
-        }
+        if (isMounted) applyRemoteDb(remoteDb);
       } catch {
         // Offline or static preview fallback
       }
     };
 
     pullFromServer();
-    const timer = window.setInterval(pullFromServer, 2500);
+    const timer = window.setInterval(pullFromServer, SERVER_POLL_MS);
     return () => {
       isMounted = false;
       window.clearInterval(timer);
     };
-  }, []);
+  }, [applyRemoteDb]);
 
-  // Push browser state changes back to /api/db so MCP Agent sees latest student progress
-  useEffect(() => {
-    if (!hasHydratedFromServerRef.current || isApplyingRemoteUpdateRef.current) {
+  // Push browser state changes back to /api/db so MCP Agent sees latest student progress.
+  // Pushes run one at a time, each based on the last version the server confirmed;
+  // a 409 means another writer (e.g. the daily agent) got there first, so adopt its version.
+  const latestStateRef = useRef({ decks, words, stats, dailyBriefing });
+  latestStateRef.current = { decks, words, stats, dailyBriefing };
+  const isPushingRef = useRef(false);
+  const hasPendingPushRef = useRef(false);
+  const hasAskedForPasscodeRef = useRef(false);
+
+  const pushToServer = useCallback(async () => {
+    if (isPushingRef.current) {
+      hasPendingPushRef.current = true;
       return;
     }
-
-    const syncToServer = async () => {
-      try {
+    isPushingRef.current = true;
+    try {
+      do {
+        hasPendingPushRef.current = false;
         const res = await fetch('/api/db', {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${readStoredPasscode()}`,
+          },
           body: JSON.stringify({
-            decks,
-            words,
-            stats,
-            dailyBriefing,
+            ...latestStateRef.current,
+            baseUpdatedAt: lastServerUpdatedAtRef.current,
           }),
         });
         if (res.ok) {
           const saved = (await res.json()) as LexiFlowDatabase;
-          if (saved?.updatedAt) {
-            lastServerUpdatedAtRef.current = saved.updatedAt;
-          }
+          lastServerUpdatedAtRef.current = saved.updatedAt;
+        } else if (res.status === 409) {
+          applyRemoteDb((await res.json()) as LexiFlowDatabase | null);
+          hasPendingPushRef.current = false;
+        } else if (res.status === 401 && !hasAskedForPasscodeRef.current) {
+          hasAskedForPasscodeRef.current = true;
+          hasPendingPushRef.current = askForPasscode();
         }
-      } catch {
-        // ignore network errors
-      }
-    };
+      } while (hasPendingPushRef.current);
+    } catch {
+      // ignore network errors
+    } finally {
+      isPushingRef.current = false;
+    }
+  }, [applyRemoteDb]);
 
-    syncToServer();
-  }, [decks, words, stats, dailyBriefing]);
+  useEffect(() => {
+    if (!hasHydratedFromServerRef.current || isApplyingRemoteUpdateRef.current) {
+      return;
+    }
+    pushToServer();
+  }, [decks, words, stats, dailyBriefing, pushToServer]);
 
   useEffect(() => {
     const root = document.documentElement;

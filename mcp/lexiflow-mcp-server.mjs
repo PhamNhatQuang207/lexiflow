@@ -3,11 +3,15 @@
  * LexiFlow MCP Server (Model Context Protocol - Stdio & CLI)
  *
  * Allows AI agents to inspect, curate, and update the LexiFlow English Vocabulary
- * web app daily. Reads and writes directly to `data/lexiflow-db.json`, which is
- * live-synced with the React web app via `/api/db`.
+ * web app daily. Reads and writes the database through the app's `/api/db`
+ * endpoint: the Vite dev server locally, or the Vercel deployment in production.
+ *
+ * Environment:
+ *   LEXIFLOW_API_URL  Base URL of the app (default http://localhost:5173)
+ *   LEXIFLOW_TOKEN    Write passcode; required by the deployed app
  *
  * Usage:
- *   1. As an MCP Stdio server (configured in `.agents/plugins/lexiflow-curator/mcp_config.json`):
+ *   1. As an MCP Stdio server (configured in `.mcp.json`):
  *      node mcp/lexiflow-mcp-server.mjs
  *
  *   2. As a direct CLI tool for quick agent/terminal execution:
@@ -15,38 +19,41 @@
  *      node mcp/lexiflow-mcp-server.mjs publish_daily_briefing '{"title":"...","message":"..."}'
  */
 
-import fs from 'node:fs';
-import path from 'node:path';
 import readline from 'node:readline';
-import { fileURLToPath } from 'node:url';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-const ROOT_DIR = path.resolve(__dirname, '..');
-const DB_DIR = path.join(ROOT_DIR, 'data');
-const DB_PATH = path.join(DB_DIR, 'lexiflow-db.json');
+const API_URL = (process.env.LEXIFLOW_API_URL || 'http://localhost:5173').replace(/\/$/, '') + '/api/db';
+const API_TOKEN = process.env.LEXIFLOW_TOKEN || '';
+const MAX_WRITE_ATTEMPTS = 3;
+
+class ConflictError extends Error {}
 
 function getTodayISO() {
   return new Date().toISOString().slice(0, 10);
 }
 
-function readDb() {
-  if (!fs.existsSync(DB_PATH)) {
-    throw new Error(
-      `Database file not found at ${DB_PATH}. Start the Vite server or seed data first.`
-    );
+async function readDb() {
+  const res = await fetch(API_URL, { cache: 'no-store' });
+  if (!res.ok) {
+    throw new Error(`GET ${API_URL} failed: ${res.status} ${await res.text()}`);
   }
-  const raw = fs.readFileSync(DB_PATH, 'utf-8');
-  return JSON.parse(raw);
+  return res.json();
 }
 
-function writeDb(db) {
-  if (!fs.existsSync(DB_DIR)) {
-    fs.mkdirSync(DB_DIR, { recursive: true });
+/** Saves `db`, which must still carry the `updatedAt` it was read with. */
+async function writeDb(db) {
+  const { updatedAt, ...fields } = db;
+  const res = await fetch(API_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${API_TOKEN}` },
+    body: JSON.stringify({ ...fields, baseUpdatedAt: updatedAt }),
+  });
+  if (res.status === 409) {
+    throw new ConflictError('Database changed while writing');
   }
-  db.updatedAt = new Date().toISOString();
-  fs.writeFileSync(DB_PATH, JSON.stringify(db, null, 2), 'utf-8');
-  return db;
+  if (!res.ok) {
+    throw new Error(`POST ${API_URL} failed: ${res.status} ${await res.text()}`);
+  }
+  return res.json();
 }
 
 function isWordDue(srs) {
@@ -307,8 +314,19 @@ const TOOLS = [
 // Tool Execution Logic
 // ============================================================================
 
-function executeTool(name, args = {}) {
-  const db = readDb();
+async function executeTool(name, args = {}) {
+  // Each attempt re-reads the latest database, so a write that lost a race
+  // with the browser is re-applied on top of the newer version.
+  for (let attempt = 1; ; attempt++) {
+    try {
+      return await runTool(name, args, await readDb());
+    } catch (err) {
+      if (!(err instanceof ConflictError) || attempt >= MAX_WRITE_ATTEMPTS) throw err;
+    }
+  }
+}
+
+async function runTool(name, args, db) {
   const today = getTodayISO();
 
   switch (name) {
@@ -473,7 +491,7 @@ function executeTool(name, args = {}) {
         }
       }
 
-      writeDb(db);
+      await writeDb(db);
       return {
         success: true,
         addedCount: added.length,
@@ -517,7 +535,7 @@ function executeTool(name, args = {}) {
       };
 
       db.words[idx] = updatedWord;
-      writeDb(db);
+      await writeDb(db);
       return {
         success: true,
         word: updatedWord,
@@ -537,7 +555,7 @@ function executeTool(name, args = {}) {
         (w) => !idSet.has(w.id) && !wordSet.has(w.word.toLowerCase())
       );
       const deletedCount = beforeCount - db.words.length;
-      writeDb(db);
+      await writeDb(db);
 
       return {
         success: true,
@@ -563,7 +581,7 @@ function executeTool(name, args = {}) {
         db.decks.push(topicObj);
       }
 
-      writeDb(db);
+      await writeDb(db);
       return {
         success: true,
         action: existingIdx >= 0 ? 'updated' : 'created',
@@ -595,7 +613,7 @@ function executeTool(name, args = {}) {
       };
 
       db.dailyBriefing = briefing;
-      writeDb(db);
+      await writeDb(db);
       return {
         success: true,
         dailyBriefing: briefing,
@@ -615,7 +633,7 @@ const cliToolName = process.argv[2];
 if (cliToolName && !cliToolName.startsWith('-')) {
   try {
     const cliArgs = process.argv[3] ? JSON.parse(process.argv[3]) : {};
-    const output = executeTool(cliToolName, cliArgs);
+    const output = await executeTool(cliToolName, cliArgs);
     process.stdout.write(JSON.stringify(output, null, 2) + '\n');
     process.exit(0);
   } catch (err) {
@@ -641,7 +659,7 @@ const rl = readline.createInterface({
   terminal: false,
 });
 
-rl.on('line', (line) => {
+rl.on('line', async (line) => {
   const trimmed = line.trim();
   if (!trimmed) return;
 
@@ -700,7 +718,7 @@ rl.on('line', (line) => {
     try {
       const toolName = params?.name;
       const toolArgs = params?.arguments || {};
-      const data = executeTool(toolName, toolArgs);
+      const data = await executeTool(toolName, toolArgs);
       sendJsonRpc({
         jsonrpc: '2.0',
         id,
