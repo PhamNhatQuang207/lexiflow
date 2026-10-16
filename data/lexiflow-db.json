@@ -1,0 +1,1228 @@
+{
+  "updatedAt": "2026-10-16T03:11:05.720Z",
+  "decks": [
+    {
+      "id": "family",
+      "name": "Family & Friends",
+      "subtitle": "Relationships, Personality & People",
+      "description": "Words to talk about your family members, close friends, character traits, and how people get along.",
+      "category": "People & Social",
+      "accentColor": "terracotta"
+    },
+    {
+      "id": "work",
+      "name": "Work & Career",
+      "subtitle": "Jobs, Office Life & Professional Skills",
+      "description": "Useful vocabulary for job interviews, daily emails, workplace teamwork, and career goals.",
+      "category": "Work & Business",
+      "accentColor": "emerald"
+    },
+    {
+      "id": "travel",
+      "name": "Travel & Holidays",
+      "subtitle": "Airports, Hotels & Sightseeing",
+      "description": "Essential words for booking trips, asking for directions, taking transport, and exploring new cities.",
+      "category": "Travel",
+      "accentColor": "sky"
+    },
+    {
+      "id": "daily",
+      "name": "Daily Life & Home",
+      "subtitle": "Routines, Shopping & Neighborhood",
+      "description": "Everyday words for morning habits, household chores, running errands, and talking about where you live.",
+      "category": "Everyday Life",
+      "accentColor": "amber"
+    },
+    {
+      "id": "food",
+      "name": "Food & Dining",
+      "subtitle": "Cooking, Restaurants & Flavors",
+      "description": "Describe ingredients, cooking methods, tastes, and ordering meals at cafes and restaurants.",
+      "category": "Lifestyle",
+      "accentColor": "rose"
+    },
+    {
+      "id": "feelings",
+      "name": "Feelings & Health",
+      "subtitle": "Emotions, Wellbeing & Fitness",
+      "description": "Express how you feel, describe moods accurately, and talk about healthy habits and rest.",
+      "category": "Health & Mind",
+      "accentColor": "teal"
+    },
+    {
+      "id": "study",
+      "name": "School & Exams",
+      "subtitle": "Learning, Essays & IELTS/TOEFL",
+      "description": "Key vocabulary for classroom discussions, writing clear essays, and passing English exams.",
+      "category": "Education",
+      "accentColor": "indigo"
+    }
+  ],
+  "words": [
+    {
+      "id": "w-cousin",
+      "word": "cousin",
+      "phonetic": "/ˈkʌz.ən/",
+      "partOfSpeech": "noun",
+      "cefr": "A1",
+      "deckId": "family",
+      "definition": "A child of your uncle or aunt.",
+      "example": "My cousin and I grew up in the same town and played together every weekend.",
+      "synonyms": [
+        "relative",
+        "family member"
+      ],
+      "antonyms": [
+        "stranger"
+      ],
+      "collocations": [
+        "first cousin",
+        "distant cousin",
+        "visit my cousin"
+      ],
+      "mnemonic": "Your aunt’s son or daughter is your cousin.",
+      "bookmarked": false,
+      "srs": {
+        "status": "mastered",
+        "interval": 14,
+        "repetition": 4,
+        "efactor": 2.5,
+        "dueDate": "2026-10-23",
+        "lapses": 0,
+        "correctStreak": 4
+      }
+    },
+    {
+      "id": "w-generous",
+      "word": "generous",
+      "phonetic": "/ˈdʒen.ər.əs/",
+      "partOfSpeech": "adjective",
+      "cefr": "A2",
+      "deckId": "family",
+      "definition": "Happy to give more money, time, or help than is usual or expected.",
+      "example": "My grandmother is very generous and always cooks extra food for the neighbors.",
+      "synonyms": [
+        "kind",
+        "giving",
+        "charitable"
+      ],
+      "antonyms": [
+        "selfish",
+        "stingy",
+        "greedy"
+      ],
+      "collocations": [
+        "generous gift",
+        "very generous of you",
+        "generous person"
+      ],
+      "mnemonic": "Generous people \"generate\" smiles by sharing what they have.",
+      "bookmarked": true,
+      "srs": {
+        "status": "new",
+        "interval": 0,
+        "repetition": 0,
+        "efactor": 2.5,
+        "dueDate": "2026-10-16",
+        "lapses": 0,
+        "correctStreak": 0
+      }
+    },
+    {
+      "id": "w-reliable",
+      "word": "reliable",
+      "phonetic": "/rɪˈlaɪ.ə.bəl/",
+      "partOfSpeech": "adjective",
+      "cefr": "B1",
+      "deckId": "family",
+      "definition": "Someone or something that you can trust to work well or do what they promise.",
+      "example": "She is my most reliable friend—whenever I need help, she is always there on time.",
+      "synonyms": [
+        "dependable",
+        "trustworthy",
+        "steady"
+      ],
+      "antonyms": [
+        "unreliable",
+        "careless"
+      ],
+      "collocations": [
+        "reliable friend",
+        "reliable information",
+        "prove reliable"
+      ],
+      "mnemonic": "Rely + able: someone you are able to rely on.",
+      "bookmarked": false,
+      "srs": {
+        "status": "learning",
+        "interval": 1,
+        "repetition": 1,
+        "efactor": 2.5,
+        "dueDate": "2026-10-16",
+        "lapses": 0,
+        "correctStreak": 0
+      }
+    },
+    {
+      "id": "w-upbringing",
+      "word": "upbringing",
+      "phonetic": "/ˈʌpˌbrɪŋ.ɪŋ/",
+      "partOfSpeech": "noun",
+      "cefr": "B2",
+      "deckId": "family",
+      "definition": "The way a child is cared for and taught how to behave by their parents while growing up.",
+      "example": "Despite having a strict upbringing, he remained very close to his parents.",
+      "synonyms": [
+        "childhood",
+        "raising",
+        "background"
+      ],
+      "antonyms": [
+        "neglect"
+      ],
+      "collocations": [
+        "strict upbringing",
+        "happy upbringing",
+        "traditional upbringing"
+      ],
+      "mnemonic": "How your parents \"bring you up\" from a baby to an adult.",
+      "bookmarked": false,
+      "srs": {
+        "status": "new",
+        "interval": 0,
+        "repetition": 0,
+        "efactor": 2.5,
+        "dueDate": "2026-10-16",
+        "lapses": 0,
+        "correctStreak": 0
+      }
+    },
+    {
+      "id": "w-empathetic",
+      "word": "empathetic",
+      "phonetic": "/ˌem.pəˈθet.ɪk/",
+      "partOfSpeech": "adjective",
+      "cefr": "C1",
+      "deckId": "family",
+      "definition": "Able to understand and share the feelings of another person as if they were your own.",
+      "example": "A good listener is empathetic and tries to see the problem from your point of view.",
+      "synonyms": [
+        "understanding",
+        "compassionate",
+        "sensitive"
+      ],
+      "antonyms": [
+        "cold",
+        "indifferent"
+      ],
+      "collocations": [
+        "empathetic listener",
+        "deeply empathetic",
+        "empathetic response"
+      ],
+      "mnemonic": "Empathy = feeling \"in\" someone else’s heart.",
+      "bookmarked": false,
+      "srs": {
+        "status": "review",
+        "interval": 4,
+        "repetition": 2,
+        "efactor": 2.5,
+        "dueDate": "2026-10-17",
+        "lapses": 0,
+        "correctStreak": 2
+      }
+    },
+    {
+      "id": "w-colleague",
+      "word": "colleague",
+      "phonetic": "/ˈkɒl.iːɡ/",
+      "partOfSpeech": "noun",
+      "cefr": "A2",
+      "deckId": "work",
+      "definition": "A person that you work with at your job.",
+      "example": "I usually have lunch with my colleagues at a small cafe near our office.",
+      "synonyms": [
+        "coworker",
+        "teammate",
+        "workmate"
+      ],
+      "antonyms": [
+        "competitor"
+      ],
+      "collocations": [
+        "close colleague",
+        "former colleague",
+        "work with colleagues"
+      ],
+      "mnemonic": "Co (together) + league: people in the same work league as you.",
+      "bookmarked": false,
+      "srs": {
+        "status": "review",
+        "interval": 4,
+        "repetition": 2,
+        "efactor": 2.5,
+        "dueDate": "2026-10-16",
+        "lapses": 0,
+        "correctStreak": 2
+      }
+    },
+    {
+      "id": "w-deadline",
+      "word": "deadline",
+      "phonetic": "/ˈded.laɪn/",
+      "partOfSpeech": "noun",
+      "cefr": "B1",
+      "deckId": "work",
+      "definition": "A time or day by which something must be finished.",
+      "example": "We need to finish the design report before Friday’s deadline.",
+      "synonyms": [
+        "time limit",
+        "due date"
+      ],
+      "antonyms": [
+        "extension"
+      ],
+      "collocations": [
+        "meet a deadline",
+        "tight deadline",
+        "miss a deadline"
+      ],
+      "mnemonic": "The final line on the calendar when the project must be done.",
+      "bookmarked": true,
+      "srs": {
+        "status": "learning",
+        "interval": 1,
+        "repetition": 1,
+        "efactor": 2.5,
+        "dueDate": "2026-10-16",
+        "lapses": 0,
+        "correctStreak": 0
+      }
+    },
+    {
+      "id": "w-promote",
+      "word": "promote",
+      "phonetic": "/prəˈməʊt/",
+      "partOfSpeech": "verb",
+      "cefr": "B1",
+      "deckId": "work",
+      "definition": "To give someone a higher or more important position at work.",
+      "example": "After two years of hard work, the company decided to promote her to team manager.",
+      "synonyms": [
+        "advance",
+        "upgrade",
+        "elevate"
+      ],
+      "antonyms": [
+        "demote"
+      ],
+      "collocations": [
+        "get promoted",
+        "promote to manager",
+        "promote from within"
+      ],
+      "mnemonic": "Pro (forward) + move: moving forward and up in your career.",
+      "bookmarked": false,
+      "srs": {
+        "status": "mastered",
+        "interval": 14,
+        "repetition": 4,
+        "efactor": 2.5,
+        "dueDate": "2026-10-25",
+        "lapses": 0,
+        "correctStreak": 4
+      }
+    },
+    {
+      "id": "w-negotiate",
+      "word": "negotiate",
+      "phonetic": "/nɪˈɡəʊ.ʃi.eɪt/",
+      "partOfSpeech": "verb",
+      "cefr": "B2",
+      "deckId": "work",
+      "definition": "To discuss something formally in order to reach an agreement on price, salary, or terms.",
+      "example": "Don’t be afraid to negotiate your starting salary when you receive a new job offer.",
+      "synonyms": [
+        "bargain",
+        "discuss terms",
+        "work out"
+      ],
+      "antonyms": [
+        "refuse"
+      ],
+      "collocations": [
+        "negotiate a contract",
+        "negotiate a salary",
+        "successfully negotiate"
+      ],
+      "mnemonic": "Talking things through until both sides say \"Okay, deal!\"",
+      "bookmarked": false,
+      "srs": {
+        "status": "new",
+        "interval": 0,
+        "repetition": 0,
+        "efactor": 2.5,
+        "dueDate": "2026-10-16",
+        "lapses": 0,
+        "correctStreak": 0
+      }
+    },
+    {
+      "id": "w-resilient",
+      "word": "resilient",
+      "phonetic": "/rɪˈzɪl.i.ənt/",
+      "partOfSpeech": "adjective",
+      "cefr": "C1",
+      "deckId": "work",
+      "definition": "Able to recover quickly and stay strong after difficult problems or changes.",
+      "example": "Small businesses had to be very resilient when customer habits changed overnight.",
+      "synonyms": [
+        "adaptable",
+        "tough",
+        "strong"
+      ],
+      "antonyms": [
+        "fragile",
+        "weak"
+      ],
+      "collocations": [
+        "resilient team",
+        "resilient economy",
+        "stay resilient"
+      ],
+      "mnemonic": "Like a rubber ball that bounces right back after hitting the floor.",
+      "bookmarked": false,
+      "srs": {
+        "status": "review",
+        "interval": 4,
+        "repetition": 2,
+        "efactor": 2.5,
+        "dueDate": "2026-10-16",
+        "lapses": 0,
+        "correctStreak": 2
+      }
+    },
+    {
+      "id": "w-luggage",
+      "word": "luggage",
+      "phonetic": "/ˈlʌɡ.ɪdʒ/",
+      "partOfSpeech": "noun",
+      "cefr": "A2",
+      "deckId": "travel",
+      "definition": "The bags and suitcases that you take with you when you travel.",
+      "example": "We left our heavy luggage at the hotel reception and walked to the beach.",
+      "synonyms": [
+        "baggage",
+        "suitcases",
+        "bags"
+      ],
+      "antonyms": [],
+      "collocations": [
+        "hand luggage",
+        "lost luggage",
+        "pack your luggage"
+      ],
+      "mnemonic": "From \"lug\" (to carry something heavy)—the bags you lug around on a trip.",
+      "bookmarked": false,
+      "srs": {
+        "status": "new",
+        "interval": 0,
+        "repetition": 0,
+        "efactor": 2.5,
+        "dueDate": "2026-10-16",
+        "lapses": 0,
+        "correctStreak": 0
+      }
+    },
+    {
+      "id": "w-passenger",
+      "word": "passenger",
+      "phonetic": "/ˈpæs.ən.dʒər/",
+      "partOfSpeech": "noun",
+      "cefr": "A2",
+      "deckId": "travel",
+      "definition": "A person who is traveling in a car, bus, train, or plane, but is not driving or flying it.",
+      "example": "All passengers must show their boarding pass before getting on the plane.",
+      "synonyms": [
+        "traveler",
+        "commuter",
+        "rider"
+      ],
+      "antonyms": [
+        "driver",
+        "pilot"
+      ],
+      "collocations": [
+        "fellow passenger",
+        "passenger seat",
+        "train passenger"
+      ],
+      "mnemonic": "Someone \"passing\" through on a journey.",
+      "bookmarked": false,
+      "srs": {
+        "status": "mastered",
+        "interval": 14,
+        "repetition": 4,
+        "efactor": 2.5,
+        "dueDate": "2026-10-26",
+        "lapses": 0,
+        "correctStreak": 4
+      }
+    },
+    {
+      "id": "w-destination",
+      "word": "destination",
+      "phonetic": "/ˌdes.tɪˈneɪ.ʃən/",
+      "partOfSpeech": "noun",
+      "cefr": "B1",
+      "deckId": "travel",
+      "definition": "The place where someone is going or where something is being sent.",
+      "example": "After a six-hour train ride, we finally arrived at our holiday destination.",
+      "synonyms": [
+        "goal",
+        "end point",
+        "stop"
+      ],
+      "antonyms": [
+        "starting point",
+        "origin"
+      ],
+      "collocations": [
+        "popular destination",
+        "final destination",
+        "reach our destination"
+      ],
+      "mnemonic": "Destiny + nation: the place you are destined to arrive at.",
+      "bookmarked": false,
+      "srs": {
+        "status": "learning",
+        "interval": 1,
+        "repetition": 1,
+        "efactor": 2.5,
+        "dueDate": "2026-10-16",
+        "lapses": 0,
+        "correctStreak": 0
+      }
+    },
+    {
+      "id": "w-itinerary",
+      "word": "itinerary",
+      "phonetic": "/aɪˈtɪn.ər.ər.i/",
+      "partOfSpeech": "noun",
+      "cefr": "B2",
+      "deckId": "travel",
+      "definition": "A detailed plan or list of places you will visit on a trip.",
+      "example": "Our tour guide sent us the daily itinerary, including museum visits and boat trips.",
+      "synonyms": [
+        "travel plan",
+        "schedule",
+        "route"
+      ],
+      "antonyms": [],
+      "collocations": [
+        "travel itinerary",
+        "plan an itinerary",
+        "on the itinerary"
+      ],
+      "mnemonic": "Your step-by-step \"tiny diary\" of where you’ll go each day on vacation.",
+      "bookmarked": true,
+      "srs": {
+        "status": "new",
+        "interval": 0,
+        "repetition": 0,
+        "efactor": 2.5,
+        "dueDate": "2026-10-16",
+        "lapses": 0,
+        "correctStreak": 0
+      }
+    },
+    {
+      "id": "w-picturesque",
+      "word": "picturesque",
+      "phonetic": "/ˌpɪk.tʃərˈesk/",
+      "partOfSpeech": "adjective",
+      "cefr": "C1",
+      "deckId": "travel",
+      "definition": "Beautiful and charming to look at, like a painted picture (especially of an old town or village).",
+      "example": "We stayed in a picturesque fishing village surrounded by green hills and clear water.",
+      "synonyms": [
+        "scenic",
+        "charming",
+        "lovely"
+      ],
+      "antonyms": [
+        "ugly",
+        "dull"
+      ],
+      "collocations": [
+        "picturesque village",
+        "picturesque view",
+        "picturesque streets"
+      ],
+      "mnemonic": "Picture + esque: so pretty it looks just like a postcard picture!",
+      "bookmarked": false,
+      "srs": {
+        "status": "new",
+        "interval": 0,
+        "repetition": 0,
+        "efactor": 2.5,
+        "dueDate": "2026-10-16",
+        "lapses": 0,
+        "correctStreak": 0
+      }
+    },
+    {
+      "id": "w-neighbor",
+      "word": "neighbor",
+      "phonetic": "/ˈneɪ.bər/",
+      "partOfSpeech": "noun",
+      "cefr": "A1",
+      "deckId": "daily",
+      "definition": "Someone who lives very near you, especially in the next house or apartment.",
+      "example": "Our next-door neighbor watered our plants while we were away for the weekend.",
+      "synonyms": [
+        "resident",
+        "local"
+      ],
+      "antonyms": [],
+      "collocations": [
+        "next-door neighbor",
+        "friendly neighbor",
+        "good neighbor"
+      ],
+      "mnemonic": "The person living \"near-by\" your door.",
+      "bookmarked": false,
+      "srs": {
+        "status": "mastered",
+        "interval": 14,
+        "repetition": 4,
+        "efactor": 2.5,
+        "dueDate": "2026-10-28",
+        "lapses": 0,
+        "correctStreak": 4
+      }
+    },
+    {
+      "id": "w-convenient",
+      "word": "convenient",
+      "phonetic": "/kənˈviː.ni.ənt/",
+      "partOfSpeech": "adjective",
+      "cefr": "B1",
+      "deckId": "daily",
+      "definition": "Easy to use, helpful, or near a place so it saves you time and effort.",
+      "example": "Living near the subway station is very convenient for getting to work every morning.",
+      "synonyms": [
+        "handy",
+        "practical",
+        "easy"
+      ],
+      "antonyms": [
+        "inconvenient",
+        "troublesome"
+      ],
+      "collocations": [
+        "convenient location",
+        "convenient time",
+        "very convenient"
+      ],
+      "mnemonic": "Think of a \"convenience store\" right on the corner—quick and easy!",
+      "bookmarked": true,
+      "srs": {
+        "status": "review",
+        "interval": 4,
+        "repetition": 2,
+        "efactor": 2.5,
+        "dueDate": "2026-10-16",
+        "lapses": 0,
+        "correctStreak": 2
+      }
+    },
+    {
+      "id": "w-chore",
+      "word": "chore",
+      "phonetic": "/tʃɔːr/",
+      "partOfSpeech": "noun",
+      "cefr": "B1",
+      "deckId": "daily",
+      "definition": "A regular job that you have to do at home, such as washing dishes or cleaning the floor.",
+      "example": "On Saturday mornings, we share the household chores so the apartment stays tidy.",
+      "synonyms": [
+        "housework",
+        "task",
+        "duty"
+      ],
+      "antonyms": [
+        "hobby",
+        "fun"
+      ],
+      "collocations": [
+        "household chores",
+        "daily chores",
+        "finish my chores"
+      ],
+      "mnemonic": "Chores can feel like a \"bore\", but they keep the house clean!",
+      "bookmarked": false,
+      "srs": {
+        "status": "new",
+        "interval": 0,
+        "repetition": 0,
+        "efactor": 2.5,
+        "dueDate": "2026-10-16",
+        "lapses": 0,
+        "correctStreak": 0
+      }
+    },
+    {
+      "id": "w-spacious",
+      "word": "spacious",
+      "phonetic": "/ˈspeɪ.ʃəs/",
+      "partOfSpeech": "adjective",
+      "cefr": "B2",
+      "deckId": "daily",
+      "definition": "Large and having plenty of room to move around in.",
+      "example": "The new apartment has a spacious living room with big windows and lots of sunlight.",
+      "synonyms": [
+        "roomy",
+        "large",
+        "open"
+      ],
+      "antonyms": [
+        "cramped",
+        "tiny",
+        "crowded"
+      ],
+      "collocations": [
+        "spacious kitchen",
+        "spacious room",
+        "bright and spacious"
+      ],
+      "mnemonic": "Full of \"space\" = spacious.",
+      "bookmarked": false,
+      "srs": {
+        "status": "learning",
+        "interval": 1,
+        "repetition": 1,
+        "efactor": 2.5,
+        "dueDate": "2026-10-16",
+        "lapses": 0,
+        "correctStreak": 0
+      }
+    },
+    {
+      "id": "w-meticulous",
+      "word": "meticulous",
+      "phonetic": "/məˈtɪk.jə.ləs/",
+      "partOfSpeech": "adjective",
+      "cefr": "C1",
+      "deckId": "daily",
+      "definition": "Very careful and paying great attention to every small detail.",
+      "example": "He is meticulous about organizing his desk so he can find any document in seconds.",
+      "synonyms": [
+        "careful",
+        "thorough",
+        "precise"
+      ],
+      "antonyms": [
+        "messy",
+        "careless",
+        "sloppy"
+      ],
+      "collocations": [
+        "meticulous care",
+        "meticulous planning",
+        "meticulous attention"
+      ],
+      "mnemonic": "Checking every single \"tick\" of a clock with a magnifying glass.",
+      "bookmarked": false,
+      "srs": {
+        "status": "review",
+        "interval": 4,
+        "repetition": 2,
+        "efactor": 2.5,
+        "dueDate": "2026-10-18",
+        "lapses": 0,
+        "correctStreak": 2
+      }
+    },
+    {
+      "id": "w-delicious",
+      "word": "delicious",
+      "phonetic": "/dɪˈlɪʃ.əs/",
+      "partOfSpeech": "adjective",
+      "cefr": "A1",
+      "deckId": "food",
+      "definition": "Having a very pleasant taste or smell.",
+      "example": "The fresh warm bread from the bakery smelled and tasted delicious.",
+      "synonyms": [
+        "tasty",
+        "yummy",
+        "mouth-watering"
+      ],
+      "antonyms": [
+        "awful",
+        "tasteless"
+      ],
+      "collocations": [
+        "delicious meal",
+        "taste delicious",
+        "absolutely delicious"
+      ],
+      "mnemonic": "Delight + dish = a delicious dish!",
+      "bookmarked": false,
+      "srs": {
+        "status": "mastered",
+        "interval": 14,
+        "repetition": 4,
+        "efactor": 2.5,
+        "dueDate": "2026-10-30",
+        "lapses": 0,
+        "correctStreak": 4
+      }
+    },
+    {
+      "id": "w-ingredient",
+      "word": "ingredient",
+      "phonetic": "/ɪnˈɡriː.di.ənt/",
+      "partOfSpeech": "noun",
+      "cefr": "B1",
+      "deckId": "food",
+      "definition": "One of the foods or items that you put together to make a particular dish.",
+      "example": "Fresh tomatoes, basil, and olive oil are the main ingredients in this pasta sauce.",
+      "synonyms": [
+        "item",
+        "part",
+        "element"
+      ],
+      "antonyms": [],
+      "collocations": [
+        "fresh ingredients",
+        "natural ingredients",
+        "main ingredient"
+      ],
+      "mnemonic": "The things that go \"in\" the pot when you cook.",
+      "bookmarked": false,
+      "srs": {
+        "status": "new",
+        "interval": 0,
+        "repetition": 0,
+        "efactor": 2.5,
+        "dueDate": "2026-10-16",
+        "lapses": 0,
+        "correctStreak": 0
+      }
+    },
+    {
+      "id": "w-appetizing",
+      "word": "appetizing",
+      "phonetic": "/ˈæp.ə.taɪ.zɪŋ/",
+      "partOfSpeech": "adjective",
+      "cefr": "B2",
+      "deckId": "food",
+      "definition": "Food that looks or smells so good that it makes you want to eat it immediately.",
+      "example": "The colorful fruit salad looked so appetizing on a hot summer afternoon.",
+      "synonyms": [
+        "tempting",
+        "appealing",
+        "mouth-watering"
+      ],
+      "antonyms": [
+        "unappetizing"
+      ],
+      "collocations": [
+        "appetizing aroma",
+        "look appetizing",
+        "very appetizing"
+      ],
+      "mnemonic": "Gives you a big \"appetite\" as soon as you see or smell it!",
+      "bookmarked": false,
+      "srs": {
+        "status": "learning",
+        "interval": 1,
+        "repetition": 1,
+        "efactor": 2.5,
+        "dueDate": "2026-10-16",
+        "lapses": 0,
+        "correctStreak": 0
+      }
+    },
+    {
+      "id": "w-exhausted",
+      "word": "exhausted",
+      "phonetic": "/ɪɡˈzɔː.stɪd/",
+      "partOfSpeech": "adjective",
+      "cefr": "B1",
+      "deckId": "feelings",
+      "definition": "Extremely tired, having no energy left at all.",
+      "example": "After walking twenty kilometers around the city, we were completely exhausted.",
+      "synonyms": [
+        "worn out",
+        "drained",
+        "very tired"
+      ],
+      "antonyms": [
+        "energetic",
+        "refreshed",
+        "lively"
+      ],
+      "collocations": [
+        "completely exhausted",
+        "feel exhausted",
+        "physically exhausted"
+      ],
+      "mnemonic": "Like a car that has used up all its fuel through the exhaust pipe.",
+      "bookmarked": true,
+      "srs": {
+        "status": "new",
+        "interval": 0,
+        "repetition": 0,
+        "efactor": 2.5,
+        "dueDate": "2026-10-16",
+        "lapses": 0,
+        "correctStreak": 0
+      }
+    },
+    {
+      "id": "w-anxious",
+      "word": "anxious",
+      "phonetic": "/ˈæŋk.ʃəs/",
+      "partOfSpeech": "adjective",
+      "cefr": "B2",
+      "deckId": "feelings",
+      "definition": "Worried and nervous about something that may happen in the future.",
+      "example": "It is normal to feel a little anxious the night before an important speaking exam.",
+      "synonyms": [
+        "nervous",
+        "worried",
+        "uneasy"
+      ],
+      "antonyms": [
+        "calm",
+        "confident",
+        "relaxed"
+      ],
+      "collocations": [
+        "feel anxious about",
+        "anxious wait",
+        "anxious moment"
+      ],
+      "mnemonic": "Taking a deep breath helps calm an anxious mind.",
+      "bookmarked": false,
+      "srs": {
+        "status": "review",
+        "interval": 4,
+        "repetition": 2,
+        "efactor": 2.5,
+        "dueDate": "2026-10-16",
+        "lapses": 0,
+        "correctStreak": 2
+      }
+    },
+    {
+      "id": "w-ambivalent",
+      "word": "ambivalent",
+      "phonetic": "/æmˈbɪv.ə.lənt/",
+      "partOfSpeech": "adjective",
+      "cefr": "C1",
+      "deckId": "feelings",
+      "definition": "Having two opposite feelings at the same time, so you are not sure what you want.",
+      "example": "She felt ambivalent about moving abroad—excited for the adventure, but sad to leave her friends.",
+      "synonyms": [
+        "unsure",
+        "mixed feelings",
+        "conflicted"
+      ],
+      "antonyms": [
+        "certain",
+        "decisive"
+      ],
+      "collocations": [
+        "feel ambivalent about",
+        "remain ambivalent"
+      ],
+      "mnemonic": "Ambi means \"both\"—pulled in both directions at once.",
+      "bookmarked": false,
+      "srs": {
+        "status": "new",
+        "interval": 0,
+        "repetition": 0,
+        "efactor": 2.5,
+        "dueDate": "2026-10-16",
+        "lapses": 0,
+        "correctStreak": 0
+      }
+    },
+    {
+      "id": "w-improve",
+      "word": "improve",
+      "phonetic": "/ɪmˈpruːv/",
+      "partOfSpeech": "verb",
+      "cefr": "A2",
+      "deckId": "study",
+      "definition": "To get better, or to make something better.",
+      "example": "Reading short stories in English every evening helped me improve my vocabulary quickly.",
+      "synonyms": [
+        "get better",
+        "develop",
+        "upgrade"
+      ],
+      "antonyms": [
+        "worsen",
+        "decline"
+      ],
+      "collocations": [
+        "improve your English",
+        "greatly improve",
+        "room to improve"
+      ],
+      "mnemonic": "Practice every day to prove you can improve!",
+      "bookmarked": false,
+      "srs": {
+        "status": "mastered",
+        "interval": 14,
+        "repetition": 4,
+        "efactor": 2.5,
+        "dueDate": "2026-10-24",
+        "lapses": 0,
+        "correctStreak": 4
+      }
+    },
+    {
+      "id": "w-concentrate",
+      "word": "concentrate",
+      "phonetic": "/ˈkɒn.sən.treɪt/",
+      "partOfSpeech": "verb",
+      "cefr": "B1",
+      "deckId": "study",
+      "definition": "To give all your attention to what you are doing and not think about other things.",
+      "example": "I put my phone in another room so I can concentrate on my homework.",
+      "synonyms": [
+        "focus",
+        "pay attention"
+      ],
+      "antonyms": [
+        "daydream",
+        "get distracted"
+      ],
+      "collocations": [
+        "concentrate on studying",
+        "hard to concentrate"
+      ],
+      "mnemonic": "Bring all your thoughts into the \"center\" of one task.",
+      "bookmarked": false,
+      "srs": {
+        "status": "learning",
+        "interval": 1,
+        "repetition": 1,
+        "efactor": 2.5,
+        "dueDate": "2026-10-16",
+        "lapses": 0,
+        "correctStreak": 0
+      }
+    },
+    {
+      "id": "w-mitigate",
+      "word": "mitigate",
+      "phonetic": "/ˈmɪt.ɪ.ɡeɪt/",
+      "partOfSpeech": "verb",
+      "cefr": "C1",
+      "deckId": "study",
+      "definition": "To make a problem or bad effect less harmful or less serious.",
+      "example": "Planting more trees in cities helps mitigate the effects of summer heat.",
+      "synonyms": [
+        "reduce",
+        "lessen",
+        "ease"
+      ],
+      "antonyms": [
+        "worsen",
+        "increase"
+      ],
+      "collocations": [
+        "mitigate the risk",
+        "mitigate the effects"
+      ],
+      "mnemonic": "Soft mittens make a freezing winter day much less harsh.",
+      "bookmarked": false,
+      "srs": {
+        "status": "new",
+        "interval": 0,
+        "repetition": 0,
+        "efactor": 2.5,
+        "dueDate": "2026-10-16",
+        "lapses": 0,
+        "correctStreak": 0
+      }
+    },
+    {
+      "id": "w-ubiquitous",
+      "word": "ubiquitous",
+      "phonetic": "/juːˈbɪk.wɪ.təs/",
+      "partOfSpeech": "adjective",
+      "cefr": "C1",
+      "deckId": "study",
+      "definition": "Seen or found everywhere at the same time; very common.",
+      "example": "Coffee shops and smartphones have become ubiquitous in modern city life.",
+      "synonyms": [
+        "everywhere",
+        "widespread",
+        "universal"
+      ],
+      "antonyms": [
+        "rare",
+        "uncommon"
+      ],
+      "collocations": [
+        "become ubiquitous",
+        "ubiquitous in modern life"
+      ],
+      "mnemonic": "Think of Wi-Fi signals floating everywhere around you.",
+      "bookmarked": true,
+      "srs": {
+        "status": "review",
+        "interval": 4,
+        "repetition": 2,
+        "efactor": 2.5,
+        "dueDate": "2026-10-16",
+        "lapses": 0,
+        "correctStreak": 2
+      }
+    }
+  ],
+  "stats": {
+    "streakDays": 9,
+    "lastActiveDate": "2026-10-16",
+    "dailyGoal": 12,
+    "voiceAccent": "en-US",
+    "activityHistory": {
+      "2026-09-25": {
+        "date": "2026-09-25",
+        "reviewedCount": 10,
+        "correctCount": 9,
+        "quizCompletedCount": 1
+      },
+      "2026-09-26": {
+        "date": "2026-09-26",
+        "reviewedCount": 12,
+        "correctCount": 10,
+        "quizCompletedCount": 2
+      },
+      "2026-09-27": {
+        "date": "2026-09-27",
+        "reviewedCount": 8,
+        "correctCount": 7,
+        "quizCompletedCount": 1
+      },
+      "2026-09-28": {
+        "date": "2026-09-28",
+        "reviewedCount": 12,
+        "correctCount": 10,
+        "quizCompletedCount": 2
+      },
+      "2026-09-30": {
+        "date": "2026-09-30",
+        "reviewedCount": 14,
+        "correctCount": 12,
+        "quizCompletedCount": 2
+      },
+      "2026-10-01": {
+        "date": "2026-10-01",
+        "reviewedCount": 16,
+        "correctCount": 14,
+        "quizCompletedCount": 2
+      },
+      "2026-10-02": {
+        "date": "2026-10-02",
+        "reviewedCount": 9,
+        "correctCount": 8,
+        "quizCompletedCount": 1
+      },
+      "2026-10-03": {
+        "date": "2026-10-03",
+        "reviewedCount": 12,
+        "correctCount": 10,
+        "quizCompletedCount": 2
+      },
+      "2026-10-04": {
+        "date": "2026-10-04",
+        "reviewedCount": 15,
+        "correctCount": 13,
+        "quizCompletedCount": 2
+      },
+      "2026-10-05": {
+        "date": "2026-10-05",
+        "reviewedCount": 8,
+        "correctCount": 7,
+        "quizCompletedCount": 1
+      },
+      "2026-10-07": {
+        "date": "2026-10-07",
+        "reviewedCount": 11,
+        "correctCount": 9,
+        "quizCompletedCount": 1
+      },
+      "2026-10-08": {
+        "date": "2026-10-08",
+        "reviewedCount": 14,
+        "correctCount": 12,
+        "quizCompletedCount": 2
+      },
+      "2026-10-09": {
+        "date": "2026-10-09",
+        "reviewedCount": 12,
+        "correctCount": 10,
+        "quizCompletedCount": 2
+      },
+      "2026-10-10": {
+        "date": "2026-10-10",
+        "reviewedCount": 10,
+        "correctCount": 9,
+        "quizCompletedCount": 1
+      },
+      "2026-10-11": {
+        "date": "2026-10-11",
+        "reviewedCount": 13,
+        "correctCount": 11,
+        "quizCompletedCount": 2
+      },
+      "2026-10-12": {
+        "date": "2026-10-12",
+        "reviewedCount": 15,
+        "correctCount": 13,
+        "quizCompletedCount": 2
+      },
+      "2026-10-13": {
+        "date": "2026-10-13",
+        "reviewedCount": 11,
+        "correctCount": 9,
+        "quizCompletedCount": 1
+      },
+      "2026-10-14": {
+        "date": "2026-10-14",
+        "reviewedCount": 14,
+        "correctCount": 12,
+        "quizCompletedCount": 2
+      },
+      "2026-10-15": {
+        "date": "2026-10-15",
+        "reviewedCount": 12,
+        "correctCount": 10,
+        "quizCompletedCount": 2
+      },
+      "2026-10-16": {
+        "date": "2026-10-16",
+        "reviewedCount": 5,
+        "correctCount": 4,
+        "quizCompletedCount": 1
+      }
+    }
+  },
+  "dailyBriefing": {
+    "date": "2026-10-16",
+    "title": "Today's Study Plan: Travel & Everyday English",
+    "message": "We picked B1 Travel & Holidays for you today. Practice saying each example sentence out loud before flipping the card!",
+    "focusLevel": "B1",
+    "focusDeckId": "travel",
+    "wordOfTheDayId": "w-itinerary",
+    "updatedAt": "2026-10-16T03:11:05.720Z"
+  }
+}

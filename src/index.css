@@ -1,0 +1,174 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  :root {
+    --bg-canvas: #F6F8FB;
+    --bg-card: #FFFFFF;
+    --bg-subtle: #F1F5F9;
+    --text-main: #0F172A;
+    --text-secondary: #475569;
+    --text-muted: #64748B;
+    --border-soft: #E2E8F0;
+    --accent-primary: #0D9488;
+    --accent-green: #10B981;
+
+    --font-serif: 'Newsreader', Georgia, serif;
+    --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+  }
+
+  .dark {
+    --bg-canvas: #0B0F17;
+    --bg-card: #131B2E;
+    --bg-subtle: #1E293B;
+    --text-main: #F8FAFC;
+    --text-secondary: #94A3B8;
+    --text-muted: #64748B;
+    --border-soft: #1E293B;
+    --accent-primary: #14B8A6;
+    --accent-green: #34D399;
+  }
+
+  body {
+    background-color: var(--bg-canvas);
+    background-image: radial-gradient(
+      ellipse 80% 50% at 50% -15%,
+      rgba(13, 148, 136, 0.08),
+      transparent
+    );
+    color: var(--text-main);
+    font-family: var(--font-sans);
+    transition: background-color 180ms ease, color 180ms ease;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .dark body {
+    background-image: radial-gradient(
+      ellipse 80% 50% at 50% -15%,
+      rgba(20, 184, 166, 0.12),
+      transparent
+    );
+  }
+}
+
+.font-serif-editorial {
+  font-family: var(--font-serif);
+}
+
+.font-sans-ui {
+  font-family: var(--font-sans);
+}
+
+.font-mono-ipa {
+  font-family: var(--font-mono);
+}
+
+/* Crisp elevated card with soft ambient depth */
+.paper-card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-soft);
+  box-shadow:
+    0 1px 2px 0 rgba(15, 23, 42, 0.03),
+    0 8px 24px -6px rgba(15, 23, 42, 0.05);
+}
+
+.dark .paper-card {
+  box-shadow:
+    0 1px 2px 0 rgba(0, 0, 0, 0.3),
+    0 10px 30px -8px rgba(0, 0, 0, 0.45);
+}
+
+/* Stacked 3D Flashcard Deck Effect */
+.flashcard-stack {
+  position: relative;
+  isolation: isolate;
+}
+
+.flashcard-stack::before,
+.flashcard-stack::after {
+  content: '';
+  position: absolute;
+  top: 12px;
+  border-radius: 24px;
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-soft);
+  pointer-events: none;
+  transition: transform 200ms ease;
+}
+
+.flashcard-stack::before {
+  left: 14px;
+  right: 14px;
+  bottom: -7px;
+  z-index: 1;
+  opacity: 0.75;
+}
+
+.flashcard-stack::after {
+  left: 28px;
+  right: 28px;
+  bottom: -14px;
+  z-index: 0;
+  opacity: 0.45;
+}
+
+/* Tactile physical button press */
+.tactile-btn {
+  box-shadow: 0 2px 0 0 rgba(15, 23, 42, 0.08);
+  transition:
+    transform 120ms cubic-bezier(0.2, 0, 0, 1),
+    box-shadow 120ms cubic-bezier(0.2, 0, 0, 1),
+    background-color 150ms ease,
+    border-color 150ms ease;
+}
+
+.tactile-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px -2px rgba(15, 23, 42, 0.12);
+}
+
+.tactile-btn:active {
+  transform: translateY(1px);
+  box-shadow: 0 1px 0 0 rgba(15, 23, 42, 0.08);
+}
+
+/* Keyboard keycap badge */
+.kbd-key {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 22px;
+  height: 22px;
+  padding: 0 6px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  border-radius: 6px;
+  background-color: var(--bg-subtle);
+  border: 1px solid var(--border-soft);
+  box-shadow: 0 1px 0 0 var(--border-soft);
+  color: var(--text-muted);
+}
+
+/* Hide scrollbar for clean pill bars */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

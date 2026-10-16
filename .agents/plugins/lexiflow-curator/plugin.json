@@ -1,0 +1,6 @@
+{
+  "name": "lexiflow-curator",
+  "version": "1.0.0",
+  "description": "MCP server & agent tools for managing the LexiFlow English vocabulary web app daily (words, CEFR levels A1-C1, topics, and Daily Study Briefings).",
+  "mcpServers": "./mcp_config.json"
+}

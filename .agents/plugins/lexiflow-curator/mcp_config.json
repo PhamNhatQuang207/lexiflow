@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "lexiflow-mcp": {
+      "command": "node",
+      "args": ["/Users/quang/orca/projects/personal/mcp/lexiflow-mcp-server.mjs"],
+      "env": {}
+    }
+  }
+}
