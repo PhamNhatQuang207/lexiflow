@@ -93,7 +93,7 @@ export const INITIAL_WORDS: VocabWord[] = [
     antonyms: ['selfish', 'stingy', 'greedy'],
     collocations: ['generous gift', 'very generous of you', 'generous person'],
     mnemonic: 'Generous people "generate" smiles by sharing what they have.',
-    bookmarked: true,
+    bookmarked: false,
     srs: createInitialSRS(),
   },
   {
@@ -177,7 +177,7 @@ export const INITIAL_WORDS: VocabWord[] = [
     antonyms: ['extension'],
     collocations: ['meet a deadline', 'tight deadline', 'miss a deadline'],
     mnemonic: 'The final line on the calendar when the project must be done.',
-    bookmarked: true,
+    bookmarked: false,
     srs: createInitialSRS(),
   },
   {
@@ -293,7 +293,7 @@ export const INITIAL_WORDS: VocabWord[] = [
     antonyms: [],
     collocations: ['travel itinerary', 'plan an itinerary', 'on the itinerary'],
     mnemonic: 'Your step-by-step "tiny diary" of where you’ll go each day on vacation.',
-    bookmarked: true,
+    bookmarked: false,
     srs: createInitialSRS(),
   },
   {
@@ -345,7 +345,7 @@ export const INITIAL_WORDS: VocabWord[] = [
     antonyms: ['inconvenient', 'troublesome'],
     collocations: ['convenient location', 'convenient time', 'very convenient'],
     mnemonic: 'Think of a "convenience store" right on the corner—quick and easy!',
-    bookmarked: true,
+    bookmarked: false,
     srs: createInitialSRS(),
   },
   {
@@ -465,7 +465,7 @@ export const INITIAL_WORDS: VocabWord[] = [
     antonyms: ['energetic', 'refreshed', 'lively'],
     collocations: ['completely exhausted', 'feel exhausted', 'physically exhausted'],
     mnemonic: 'Like a car that has used up all its fuel through the exhaust pipe.',
-    bookmarked: true,
+    bookmarked: false,
     srs: createInitialSRS(),
   },
   {
@@ -565,7 +565,7 @@ export const INITIAL_WORDS: VocabWord[] = [
     antonyms: ['rare', 'uncommon'],
     collocations: ['become ubiquitous', 'ubiquitous in modern life'],
     mnemonic: 'Think of Wi-Fi signals floating everywhere around you.',
-    bookmarked: true,
+    bookmarked: false,
     srs: createInitialSRS(),
   },
 ];
