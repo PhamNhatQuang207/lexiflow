@@ -401,7 +401,7 @@ export const FlashcardStudio: React.FC<FlashcardStudioProps> = ({
         </div>
 
         {/* Bottom Row: Everyday Topic Chips with Icons */}
-        <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar pt-2 border-t border-slate-100 dark:border-slate-800/80">
+        <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar sm:flex-wrap sm:overflow-visible pt-2 border-t border-slate-100 dark:border-slate-800/80">
           <button
             type="button"
             onClick={() => onSelectDeckId('all')}
