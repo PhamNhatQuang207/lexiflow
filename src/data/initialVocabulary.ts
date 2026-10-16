@@ -1,5 +1,5 @@
 import { VocabDeck, VocabWord, UserStats } from '../types/vocab';
-import { addDaysISO, createInitialSRS, getTodayISO } from '../utils/srs';
+import { createInitialSRS, getTodayISO } from '../utils/srs';
 
 export const INITIAL_DECKS: VocabDeck[] = [
   {
@@ -78,7 +78,7 @@ export const INITIAL_WORDS: VocabWord[] = [
     collocations: ['first cousin', 'distant cousin', 'visit my cousin'],
     mnemonic: 'Your aunt’s son or daughter is your cousin.',
     bookmarked: false,
-    srs: createInitialSRS('mastered', 7),
+    srs: createInitialSRS(),
   },
   {
     id: 'w-generous',
@@ -94,7 +94,7 @@ export const INITIAL_WORDS: VocabWord[] = [
     collocations: ['generous gift', 'very generous of you', 'generous person'],
     mnemonic: 'Generous people "generate" smiles by sharing what they have.',
     bookmarked: true,
-    srs: createInitialSRS('new', 0),
+    srs: createInitialSRS(),
   },
   {
     id: 'w-reliable',
@@ -110,7 +110,7 @@ export const INITIAL_WORDS: VocabWord[] = [
     collocations: ['reliable friend', 'reliable information', 'prove reliable'],
     mnemonic: 'Rely + able: someone you are able to rely on.',
     bookmarked: false,
-    srs: createInitialSRS('learning', 0),
+    srs: createInitialSRS(),
   },
   {
     id: 'w-upbringing',
@@ -126,7 +126,7 @@ export const INITIAL_WORDS: VocabWord[] = [
     collocations: ['strict upbringing', 'happy upbringing', 'traditional upbringing'],
     mnemonic: 'How your parents "bring you up" from a baby to an adult.',
     bookmarked: false,
-    srs: createInitialSRS('new', 0),
+    srs: createInitialSRS(),
   },
   {
     id: 'w-empathetic',
@@ -142,7 +142,7 @@ export const INITIAL_WORDS: VocabWord[] = [
     collocations: ['empathetic listener', 'deeply empathetic', 'empathetic response'],
     mnemonic: 'Empathy = feeling "in" someone else’s heart.',
     bookmarked: false,
-    srs: createInitialSRS('review', 1),
+    srs: createInitialSRS(),
   },
 
   // ==========================================
@@ -162,7 +162,7 @@ export const INITIAL_WORDS: VocabWord[] = [
     collocations: ['close colleague', 'former colleague', 'work with colleagues'],
     mnemonic: 'Co (together) + league: people in the same work league as you.',
     bookmarked: false,
-    srs: createInitialSRS('review', 0),
+    srs: createInitialSRS(),
   },
   {
     id: 'w-deadline',
@@ -178,7 +178,7 @@ export const INITIAL_WORDS: VocabWord[] = [
     collocations: ['meet a deadline', 'tight deadline', 'miss a deadline'],
     mnemonic: 'The final line on the calendar when the project must be done.',
     bookmarked: true,
-    srs: createInitialSRS('learning', 0),
+    srs: createInitialSRS(),
   },
   {
     id: 'w-promote',
@@ -194,7 +194,7 @@ export const INITIAL_WORDS: VocabWord[] = [
     collocations: ['get promoted', 'promote to manager', 'promote from within'],
     mnemonic: 'Pro (forward) + move: moving forward and up in your career.',
     bookmarked: false,
-    srs: createInitialSRS('mastered', 9),
+    srs: createInitialSRS(),
   },
   {
     id: 'w-negotiate',
@@ -210,7 +210,7 @@ export const INITIAL_WORDS: VocabWord[] = [
     collocations: ['negotiate a contract', 'negotiate a salary', 'successfully negotiate'],
     mnemonic: 'Talking things through until both sides say "Okay, deal!"',
     bookmarked: false,
-    srs: createInitialSRS('new', 0),
+    srs: createInitialSRS(),
   },
   {
     id: 'w-resilient',
@@ -226,7 +226,7 @@ export const INITIAL_WORDS: VocabWord[] = [
     collocations: ['resilient team', 'resilient economy', 'stay resilient'],
     mnemonic: 'Like a rubber ball that bounces right back after hitting the floor.',
     bookmarked: false,
-    srs: createInitialSRS('review', 0),
+    srs: createInitialSRS(),
   },
 
   // ==========================================
@@ -246,7 +246,7 @@ export const INITIAL_WORDS: VocabWord[] = [
     collocations: ['hand luggage', 'lost luggage', 'pack your luggage'],
     mnemonic: 'From "lug" (to carry something heavy)—the bags you lug around on a trip.',
     bookmarked: false,
-    srs: createInitialSRS('new', 0),
+    srs: createInitialSRS(),
   },
   {
     id: 'w-passenger',
@@ -262,7 +262,7 @@ export const INITIAL_WORDS: VocabWord[] = [
     collocations: ['fellow passenger', 'passenger seat', 'train passenger'],
     mnemonic: 'Someone "passing" through on a journey.',
     bookmarked: false,
-    srs: createInitialSRS('mastered', 10),
+    srs: createInitialSRS(),
   },
   {
     id: 'w-destination',
@@ -278,7 +278,7 @@ export const INITIAL_WORDS: VocabWord[] = [
     collocations: ['popular destination', 'final destination', 'reach our destination'],
     mnemonic: 'Destiny + nation: the place you are destined to arrive at.',
     bookmarked: false,
-    srs: createInitialSRS('learning', 0),
+    srs: createInitialSRS(),
   },
   {
     id: 'w-itinerary',
@@ -294,7 +294,7 @@ export const INITIAL_WORDS: VocabWord[] = [
     collocations: ['travel itinerary', 'plan an itinerary', 'on the itinerary'],
     mnemonic: 'Your step-by-step "tiny diary" of where you’ll go each day on vacation.',
     bookmarked: true,
-    srs: createInitialSRS('new', 0),
+    srs: createInitialSRS(),
   },
   {
     id: 'w-picturesque',
@@ -310,7 +310,7 @@ export const INITIAL_WORDS: VocabWord[] = [
     collocations: ['picturesque village', 'picturesque view', 'picturesque streets'],
     mnemonic: 'Picture + esque: so pretty it looks just like a postcard picture!',
     bookmarked: false,
-    srs: createInitialSRS('new', 0),
+    srs: createInitialSRS(),
   },
 
   // ==========================================
@@ -330,7 +330,7 @@ export const INITIAL_WORDS: VocabWord[] = [
     collocations: ['next-door neighbor', 'friendly neighbor', 'good neighbor'],
     mnemonic: 'The person living "near-by" your door.',
     bookmarked: false,
-    srs: createInitialSRS('mastered', 12),
+    srs: createInitialSRS(),
   },
   {
     id: 'w-convenient',
@@ -346,7 +346,7 @@ export const INITIAL_WORDS: VocabWord[] = [
     collocations: ['convenient location', 'convenient time', 'very convenient'],
     mnemonic: 'Think of a "convenience store" right on the corner—quick and easy!',
     bookmarked: true,
-    srs: createInitialSRS('review', 0),
+    srs: createInitialSRS(),
   },
   {
     id: 'w-chore',
@@ -362,7 +362,7 @@ export const INITIAL_WORDS: VocabWord[] = [
     collocations: ['household chores', 'daily chores', 'finish my chores'],
     mnemonic: 'Chores can feel like a "bore", but they keep the house clean!',
     bookmarked: false,
-    srs: createInitialSRS('new', 0),
+    srs: createInitialSRS(),
   },
   {
     id: 'w-spacious',
@@ -378,7 +378,7 @@ export const INITIAL_WORDS: VocabWord[] = [
     collocations: ['spacious kitchen', 'spacious room', 'bright and spacious'],
     mnemonic: 'Full of "space" = spacious.',
     bookmarked: false,
-    srs: createInitialSRS('learning', 0),
+    srs: createInitialSRS(),
   },
   {
     id: 'w-meticulous',
@@ -394,7 +394,7 @@ export const INITIAL_WORDS: VocabWord[] = [
     collocations: ['meticulous care', 'meticulous planning', 'meticulous attention'],
     mnemonic: 'Checking every single "tick" of a clock with a magnifying glass.',
     bookmarked: false,
-    srs: createInitialSRS('review', 2),
+    srs: createInitialSRS(),
   },
 
   // ==========================================
@@ -414,7 +414,7 @@ export const INITIAL_WORDS: VocabWord[] = [
     collocations: ['delicious meal', 'taste delicious', 'absolutely delicious'],
     mnemonic: 'Delight + dish = a delicious dish!',
     bookmarked: false,
-    srs: createInitialSRS('mastered', 14),
+    srs: createInitialSRS(),
   },
   {
     id: 'w-ingredient',
@@ -430,7 +430,7 @@ export const INITIAL_WORDS: VocabWord[] = [
     collocations: ['fresh ingredients', 'natural ingredients', 'main ingredient'],
     mnemonic: 'The things that go "in" the pot when you cook.',
     bookmarked: false,
-    srs: createInitialSRS('new', 0),
+    srs: createInitialSRS(),
   },
   {
     id: 'w-appetizing',
@@ -446,7 +446,7 @@ export const INITIAL_WORDS: VocabWord[] = [
     collocations: ['appetizing aroma', 'look appetizing', 'very appetizing'],
     mnemonic: 'Gives you a big "appetite" as soon as you see or smell it!',
     bookmarked: false,
-    srs: createInitialSRS('learning', 0),
+    srs: createInitialSRS(),
   },
 
   // ==========================================
@@ -466,7 +466,7 @@ export const INITIAL_WORDS: VocabWord[] = [
     collocations: ['completely exhausted', 'feel exhausted', 'physically exhausted'],
     mnemonic: 'Like a car that has used up all its fuel through the exhaust pipe.',
     bookmarked: true,
-    srs: createInitialSRS('new', 0),
+    srs: createInitialSRS(),
   },
   {
     id: 'w-anxious',
@@ -482,7 +482,7 @@ export const INITIAL_WORDS: VocabWord[] = [
     collocations: ['feel anxious about', 'anxious wait', 'anxious moment'],
     mnemonic: 'Taking a deep breath helps calm an anxious mind.',
     bookmarked: false,
-    srs: createInitialSRS('review', 0),
+    srs: createInitialSRS(),
   },
   {
     id: 'w-ambivalent',
@@ -498,7 +498,7 @@ export const INITIAL_WORDS: VocabWord[] = [
     collocations: ['feel ambivalent about', 'remain ambivalent'],
     mnemonic: 'Ambi means "both"—pulled in both directions at once.',
     bookmarked: false,
-    srs: createInitialSRS('new', 0),
+    srs: createInitialSRS(),
   },
 
   // ==========================================
@@ -518,7 +518,7 @@ export const INITIAL_WORDS: VocabWord[] = [
     collocations: ['improve your English', 'greatly improve', 'room to improve'],
     mnemonic: 'Practice every day to prove you can improve!',
     bookmarked: false,
-    srs: createInitialSRS('mastered', 8),
+    srs: createInitialSRS(),
   },
   {
     id: 'w-concentrate',
@@ -534,7 +534,7 @@ export const INITIAL_WORDS: VocabWord[] = [
     collocations: ['concentrate on studying', 'hard to concentrate'],
     mnemonic: 'Bring all your thoughts into the "center" of one task.',
     bookmarked: false,
-    srs: createInitialSRS('learning', 0),
+    srs: createInitialSRS(),
   },
   {
     id: 'w-mitigate',
@@ -550,7 +550,7 @@ export const INITIAL_WORDS: VocabWord[] = [
     collocations: ['mitigate the risk', 'mitigate the effects'],
     mnemonic: 'Soft mittens make a freezing winter day much less harsh.',
     bookmarked: false,
-    srs: createInitialSRS('new', 0),
+    srs: createInitialSRS(),
   },
   {
     id: 'w-ubiquitous',
@@ -566,36 +566,16 @@ export const INITIAL_WORDS: VocabWord[] = [
     collocations: ['become ubiquitous', 'ubiquitous in modern life'],
     mnemonic: 'Think of Wi-Fi signals floating everywhere around you.',
     bookmarked: true,
-    srs: createInitialSRS('review', 0),
+    srs: createInitialSRS(),
   },
 ];
 
 export function createInitialUserStats(): UserStats {
-  const today = getTodayISO();
-  const history: Record<string, { date: string; reviewedCount: number; correctCount: number; quizCompletedCount: number }> = {};
-
-  const sampleCounts = [
-    10, 12, 8, 12, 0, 14, 16, 9, 12, 15, 8, 0, 11, 14, 12, 10, 13, 15, 11, 14, 12, 5,
-  ];
-  for (let i = 0; i < sampleCounts.length; i++) {
-    const daysAgo = sampleCounts.length - 1 - i;
-    const dateStr = addDaysISO(today, -daysAgo);
-    const count = sampleCounts[i];
-    if (count > 0) {
-      history[dateStr] = {
-        date: dateStr,
-        reviewedCount: count,
-        correctCount: Math.max(1, Math.round(count * 0.86)),
-        quizCompletedCount: count >= 12 ? 2 : 1,
-      };
-    }
-  }
-
   return {
-    streakDays: 9,
-    lastActiveDate: today,
+    streakDays: 0,
+    lastActiveDate: getTodayISO(),
     dailyGoal: 12,
     voiceAccent: 'en-US',
-    activityHistory: history,
+    activityHistory: {},
   };
 }

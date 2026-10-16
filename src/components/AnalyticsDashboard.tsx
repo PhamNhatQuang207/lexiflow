@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import { PencilSimple, SpeakerHigh } from '@phosphor-icons/react';
 import { UserStats, VocabDeck, VocabWord } from '../types/vocab';
-import { addDaysISO, getTodayISO } from '../utils/srs';
+import { addDaysISO, computeStreakDays, getTodayISO } from '../utils/srs';
 import { speakText } from '../utils/speech';
 
 interface AnalyticsDashboardProps {
@@ -92,7 +92,7 @@ export const AnalyticsDashboard: React.FC<AnalyticsDashboardProps> = ({
         <div className="paper-card rounded-2xl p-5 space-y-1">
           <div className="text-xs font-medium text-slate-500">Daily Streak</div>
           <div className="font-serif-editorial text-3xl font-bold text-teal-600 dark:text-teal-400">
-            {stats.streakDays} days
+            {computeStreakDays(stats.activityHistory, today)} days
           </div>
           <div className="text-xs text-slate-600 dark:text-slate-400">
             Keep studying daily!

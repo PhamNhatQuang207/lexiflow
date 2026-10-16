@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-16T03:11:05.720Z",
+  "updatedAt": "2026-10-16T04:35:30.269Z",
   "decks": [
     {
       "id": "family",
@@ -83,13 +83,13 @@
       "mnemonic": "Your aunt’s son or daughter is your cousin.",
       "bookmarked": false,
       "srs": {
-        "status": "mastered",
-        "interval": 14,
-        "repetition": 4,
+        "status": "new",
+        "interval": 0,
+        "repetition": 0,
         "efactor": 2.5,
-        "dueDate": "2026-10-23",
+        "dueDate": "2026-10-16",
         "lapses": 0,
-        "correctStreak": 4
+        "correctStreak": 0
       }
     },
     {
@@ -154,9 +154,9 @@
       "mnemonic": "Rely + able: someone you are able to rely on.",
       "bookmarked": false,
       "srs": {
-        "status": "learning",
-        "interval": 1,
-        "repetition": 1,
+        "status": "new",
+        "interval": 0,
+        "repetition": 0,
         "efactor": 2.5,
         "dueDate": "2026-10-16",
         "lapses": 0,
@@ -223,13 +223,13 @@
       "mnemonic": "Empathy = feeling \"in\" someone else’s heart.",
       "bookmarked": false,
       "srs": {
-        "status": "review",
-        "interval": 4,
-        "repetition": 2,
+        "status": "new",
+        "interval": 0,
+        "repetition": 0,
         "efactor": 2.5,
-        "dueDate": "2026-10-17",
+        "dueDate": "2026-10-16",
         "lapses": 0,
-        "correctStreak": 2
+        "correctStreak": 0
       }
     },
     {
@@ -257,13 +257,13 @@
       "mnemonic": "Co (together) + league: people in the same work league as you.",
       "bookmarked": false,
       "srs": {
-        "status": "review",
-        "interval": 4,
-        "repetition": 2,
+        "status": "new",
+        "interval": 0,
+        "repetition": 0,
         "efactor": 2.5,
         "dueDate": "2026-10-16",
         "lapses": 0,
-        "correctStreak": 2
+        "correctStreak": 0
       }
     },
     {
@@ -290,9 +290,9 @@
       "mnemonic": "The final line on the calendar when the project must be done.",
       "bookmarked": true,
       "srs": {
-        "status": "learning",
-        "interval": 1,
-        "repetition": 1,
+        "status": "new",
+        "interval": 0,
+        "repetition": 0,
         "efactor": 2.5,
         "dueDate": "2026-10-16",
         "lapses": 0,
@@ -324,13 +324,13 @@
       "mnemonic": "Pro (forward) + move: moving forward and up in your career.",
       "bookmarked": false,
       "srs": {
-        "status": "mastered",
-        "interval": 14,
-        "repetition": 4,
+        "status": "new",
+        "interval": 0,
+        "repetition": 0,
         "efactor": 2.5,
-        "dueDate": "2026-10-25",
+        "dueDate": "2026-10-16",
         "lapses": 0,
-        "correctStreak": 4
+        "correctStreak": 0
       }
     },
     {
@@ -393,13 +393,13 @@
       "mnemonic": "Like a rubber ball that bounces right back after hitting the floor.",
       "bookmarked": false,
       "srs": {
-        "status": "review",
-        "interval": 4,
-        "repetition": 2,
+        "status": "new",
+        "interval": 0,
+        "repetition": 0,
         "efactor": 2.5,
         "dueDate": "2026-10-16",
         "lapses": 0,
-        "correctStreak": 2
+        "correctStreak": 0
       }
     },
     {
@@ -460,13 +460,13 @@
       "mnemonic": "Someone \"passing\" through on a journey.",
       "bookmarked": false,
       "srs": {
-        "status": "mastered",
-        "interval": 14,
-        "repetition": 4,
+        "status": "new",
+        "interval": 0,
+        "repetition": 0,
         "efactor": 2.5,
-        "dueDate": "2026-10-26",
+        "dueDate": "2026-10-16",
         "lapses": 0,
-        "correctStreak": 4
+        "correctStreak": 0
       }
     },
     {
@@ -495,9 +495,9 @@
       "mnemonic": "Destiny + nation: the place you are destined to arrive at.",
       "bookmarked": false,
       "srs": {
-        "status": "learning",
-        "interval": 1,
-        "repetition": 1,
+        "status": "new",
+        "interval": 0,
+        "repetition": 0,
         "efactor": 2.5,
         "dueDate": "2026-10-16",
         "lapses": 0,
@@ -593,13 +593,13 @@
       "mnemonic": "The person living \"near-by\" your door.",
       "bookmarked": false,
       "srs": {
-        "status": "mastered",
-        "interval": 14,
-        "repetition": 4,
+        "status": "new",
+        "interval": 0,
+        "repetition": 0,
         "efactor": 2.5,
-        "dueDate": "2026-10-28",
+        "dueDate": "2026-10-16",
         "lapses": 0,
-        "correctStreak": 4
+        "correctStreak": 0
       }
     },
     {
@@ -628,13 +628,13 @@
       "mnemonic": "Think of a \"convenience store\" right on the corner—quick and easy!",
       "bookmarked": true,
       "srs": {
-        "status": "review",
-        "interval": 4,
-        "repetition": 2,
+        "status": "new",
+        "interval": 0,
+        "repetition": 0,
         "efactor": 2.5,
         "dueDate": "2026-10-16",
         "lapses": 0,
-        "correctStreak": 2
+        "correctStreak": 0
       }
     },
     {
@@ -699,9 +699,9 @@
       "mnemonic": "Full of \"space\" = spacious.",
       "bookmarked": false,
       "srs": {
-        "status": "learning",
-        "interval": 1,
-        "repetition": 1,
+        "status": "new",
+        "interval": 0,
+        "repetition": 0,
         "efactor": 2.5,
         "dueDate": "2026-10-16",
         "lapses": 0,
@@ -735,13 +735,13 @@
       "mnemonic": "Checking every single \"tick\" of a clock with a magnifying glass.",
       "bookmarked": false,
       "srs": {
-        "status": "review",
-        "interval": 4,
-        "repetition": 2,
+        "status": "new",
+        "interval": 0,
+        "repetition": 0,
         "efactor": 2.5,
-        "dueDate": "2026-10-18",
+        "dueDate": "2026-10-16",
         "lapses": 0,
-        "correctStreak": 2
+        "correctStreak": 0
       }
     },
     {
@@ -770,13 +770,13 @@
       "mnemonic": "Delight + dish = a delicious dish!",
       "bookmarked": false,
       "srs": {
-        "status": "mastered",
-        "interval": 14,
-        "repetition": 4,
+        "status": "new",
+        "interval": 0,
+        "repetition": 0,
         "efactor": 2.5,
-        "dueDate": "2026-10-30",
+        "dueDate": "2026-10-16",
         "lapses": 0,
-        "correctStreak": 4
+        "correctStreak": 0
       }
     },
     {
@@ -836,9 +836,9 @@
       "mnemonic": "Gives you a big \"appetite\" as soon as you see or smell it!",
       "bookmarked": false,
       "srs": {
-        "status": "learning",
-        "interval": 1,
-        "repetition": 1,
+        "status": "new",
+        "interval": 0,
+        "repetition": 0,
         "efactor": 2.5,
         "dueDate": "2026-10-16",
         "lapses": 0,
@@ -908,13 +908,13 @@
       "mnemonic": "Taking a deep breath helps calm an anxious mind.",
       "bookmarked": false,
       "srs": {
-        "status": "review",
-        "interval": 4,
-        "repetition": 2,
+        "status": "new",
+        "interval": 0,
+        "repetition": 0,
         "efactor": 2.5,
         "dueDate": "2026-10-16",
         "lapses": 0,
-        "correctStreak": 2
+        "correctStreak": 0
       }
     },
     {
@@ -977,13 +977,13 @@
       "mnemonic": "Practice every day to prove you can improve!",
       "bookmarked": false,
       "srs": {
-        "status": "mastered",
-        "interval": 14,
-        "repetition": 4,
+        "status": "new",
+        "interval": 0,
+        "repetition": 0,
         "efactor": 2.5,
-        "dueDate": "2026-10-24",
+        "dueDate": "2026-10-16",
         "lapses": 0,
-        "correctStreak": 4
+        "correctStreak": 0
       }
     },
     {
@@ -1010,9 +1010,9 @@
       "mnemonic": "Bring all your thoughts into the \"center\" of one task.",
       "bookmarked": false,
       "srs": {
-        "status": "learning",
-        "interval": 1,
-        "repetition": 1,
+        "status": "new",
+        "interval": 0,
+        "repetition": 0,
         "efactor": 2.5,
         "dueDate": "2026-10-16",
         "lapses": 0,
@@ -1078,143 +1078,22 @@
       "mnemonic": "Think of Wi-Fi signals floating everywhere around you.",
       "bookmarked": true,
       "srs": {
-        "status": "review",
-        "interval": 4,
-        "repetition": 2,
+        "status": "new",
+        "interval": 0,
+        "repetition": 0,
         "efactor": 2.5,
         "dueDate": "2026-10-16",
         "lapses": 0,
-        "correctStreak": 2
+        "correctStreak": 0
       }
     }
   ],
   "stats": {
-    "streakDays": 9,
+    "streakDays": 0,
     "lastActiveDate": "2026-10-16",
     "dailyGoal": 12,
     "voiceAccent": "en-US",
-    "activityHistory": {
-      "2026-09-25": {
-        "date": "2026-09-25",
-        "reviewedCount": 10,
-        "correctCount": 9,
-        "quizCompletedCount": 1
-      },
-      "2026-09-26": {
-        "date": "2026-09-26",
-        "reviewedCount": 12,
-        "correctCount": 10,
-        "quizCompletedCount": 2
-      },
-      "2026-09-27": {
-        "date": "2026-09-27",
-        "reviewedCount": 8,
-        "correctCount": 7,
-        "quizCompletedCount": 1
-      },
-      "2026-09-28": {
-        "date": "2026-09-28",
-        "reviewedCount": 12,
-        "correctCount": 10,
-        "quizCompletedCount": 2
-      },
-      "2026-09-30": {
-        "date": "2026-09-30",
-        "reviewedCount": 14,
-        "correctCount": 12,
-        "quizCompletedCount": 2
-      },
-      "2026-10-01": {
-        "date": "2026-10-01",
-        "reviewedCount": 16,
-        "correctCount": 14,
-        "quizCompletedCount": 2
-      },
-      "2026-10-02": {
-        "date": "2026-10-02",
-        "reviewedCount": 9,
-        "correctCount": 8,
-        "quizCompletedCount": 1
-      },
-      "2026-10-03": {
-        "date": "2026-10-03",
-        "reviewedCount": 12,
-        "correctCount": 10,
-        "quizCompletedCount": 2
-      },
-      "2026-10-04": {
-        "date": "2026-10-04",
-        "reviewedCount": 15,
-        "correctCount": 13,
-        "quizCompletedCount": 2
-      },
-      "2026-10-05": {
-        "date": "2026-10-05",
-        "reviewedCount": 8,
-        "correctCount": 7,
-        "quizCompletedCount": 1
-      },
-      "2026-10-07": {
-        "date": "2026-10-07",
-        "reviewedCount": 11,
-        "correctCount": 9,
-        "quizCompletedCount": 1
-      },
-      "2026-10-08": {
-        "date": "2026-10-08",
-        "reviewedCount": 14,
-        "correctCount": 12,
-        "quizCompletedCount": 2
-      },
-      "2026-10-09": {
-        "date": "2026-10-09",
-        "reviewedCount": 12,
-        "correctCount": 10,
-        "quizCompletedCount": 2
-      },
-      "2026-10-10": {
-        "date": "2026-10-10",
-        "reviewedCount": 10,
-        "correctCount": 9,
-        "quizCompletedCount": 1
-      },
-      "2026-10-11": {
-        "date": "2026-10-11",
-        "reviewedCount": 13,
-        "correctCount": 11,
-        "quizCompletedCount": 2
-      },
-      "2026-10-12": {
-        "date": "2026-10-12",
-        "reviewedCount": 15,
-        "correctCount": 13,
-        "quizCompletedCount": 2
-      },
-      "2026-10-13": {
-        "date": "2026-10-13",
-        "reviewedCount": 11,
-        "correctCount": 9,
-        "quizCompletedCount": 1
-      },
-      "2026-10-14": {
-        "date": "2026-10-14",
-        "reviewedCount": 14,
-        "correctCount": 12,
-        "quizCompletedCount": 2
-      },
-      "2026-10-15": {
-        "date": "2026-10-15",
-        "reviewedCount": 12,
-        "correctCount": 10,
-        "quizCompletedCount": 2
-      },
-      "2026-10-16": {
-        "date": "2026-10-16",
-        "reviewedCount": 5,
-        "correctCount": 4,
-        "quizCompletedCount": 1
-      }
-    }
+    "activityHistory": {}
   },
   "dailyBriefing": {
     "date": "2026-10-16",

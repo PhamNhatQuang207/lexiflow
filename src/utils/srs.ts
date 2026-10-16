@@ -1,4 +1,4 @@
-import { SRSData, SRSRating, MasteryStatus } from '../types/vocab';
+import { DailyActivity, SRSData, SRSRating, MasteryStatus } from '../types/vocab';
 
 export function getTodayISO(): string {
   const now = new Date();
@@ -16,6 +16,20 @@ export function addDaysISO(baseDateISO: string, days: number): string {
   const month = String(date.getMonth() + 1).padStart(2, '0');
   const day = String(date.getDate()).padStart(2, '0');
   return `${year}-${month}-${day}`;
+}
+
+/** Consecutive days with at least one review, ending today (or yesterday if today has none yet). */
+export function computeStreakDays(
+  history: Record<string, DailyActivity>,
+  today: string = getTodayISO()
+): number {
+  let day = history[today]?.reviewedCount ? today : addDaysISO(today, -1);
+  let streak = 0;
+  while (history[day]?.reviewedCount) {
+    streak++;
+    day = addDaysISO(day, -1);
+  }
+  return streak;
 }
 
 export function createInitialSRS(status: MasteryStatus = 'new', offsetDays = 0): SRSData {

@@ -14,7 +14,7 @@ import {
   INITIAL_WORDS,
   createInitialUserStats,
 } from './data/initialVocabulary';
-import { computeNextSRS, getTodayISO, isWordDue } from './utils/srs';
+import { computeNextSRS, computeStreakDays, getTodayISO, isWordDue } from './utils/srs';
 import { Navbar } from './components/Navbar';
 import { FlashcardStudio } from './components/FlashcardStudio';
 import { QuizArena } from './components/QuizArena';
@@ -277,17 +277,20 @@ export const App: React.FC = () => {
         correctCount: 0,
         quizCompletedCount: 0,
       };
+      const activityHistory = {
+        ...prev.activityHistory,
+        [today]: {
+          ...currentEntry,
+          reviewedCount: currentEntry.reviewedCount + 1,
+          correctCount: currentEntry.correctCount + (isCorrect ? 1 : 0),
+        },
+      };
       return {
         ...prev,
         lastActiveDate: today,
-        activityHistory: {
-          ...prev.activityHistory,
-          [today]: {
-            ...currentEntry,
-            reviewedCount: currentEntry.reviewedCount + 1,
-            correctCount: currentEntry.correctCount + (isCorrect ? 1 : 0),
-          },
-        },
+        // Stored so the MCP agent sees it; the UI recomputes it so missed days show.
+        streakDays: computeStreakDays(activityHistory, today),
+        activityHistory,
       };
     });
   }, []);
@@ -401,7 +404,7 @@ export const App: React.FC = () => {
         onSelectTab={setActiveTab}
         dueCount={dueCount}
         totalWordsCount={words.length}
-        streakDays={stats.streakDays}
+        streakDays={computeStreakDays(stats.activityHistory, todayISO)}
         todayReviewed={todayReviewed}
         dailyGoal={stats.dailyGoal}
         darkMode={darkMode}
