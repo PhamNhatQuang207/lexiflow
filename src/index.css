@@ -1,4 +1,6 @@
 @import "tailwindcss";
+/* The dev database is rewritten on every save; scanning it makes Tailwind force a full page reload. */
+@source not "../data";
 
 @custom-variant dark (&:where(.dark, .dark *));
 
